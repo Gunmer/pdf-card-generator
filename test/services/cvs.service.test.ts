@@ -20,7 +20,7 @@ describe('CvsService', () => {
   })
 
   test.it('should be defined', () => {
-    expect(injector).not.undefined
+    expect(service).not.undefined
   })
 
   test.it('should not return undefined', () => {

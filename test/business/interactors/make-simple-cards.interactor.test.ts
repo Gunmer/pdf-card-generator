@@ -3,11 +3,11 @@ import 'reflect-metadata'
 import {instance, mock, verify, when} from 'ts-mockito'
 
 import {MakeSimpleCardsInteractor} from '../../../src/business/interactors/make-simple-cards.interactor'
-import {TemplateData} from '../../../src/business/models/template-data'
 import {CvsService} from '../../../src/business/services/cvs.service'
 import {FactoryService} from '../../../src/business/services/factory.service'
 import {TemplateService} from '../../../src/business/services/template.service'
 import injector from '../../../src/injector'
+import fixtures from '../../fixtures'
 
 describe('MakeSimpleCardsInteractor', () => {
   let interactor: MakeSimpleCardsInteractor
@@ -19,15 +19,15 @@ describe('MakeSimpleCardsInteractor', () => {
   const filePath = 'file.cvs'
   const outputFile = 'file.html'
   const templateFile = 'template.mustache'
-  const cvsData = [{id: '1', name: 'name'}]
-  const templateData: TemplateData = {rows: cvsData}
+  const cvsData = fixtures.getSimpleCvsData()
+  const templateData = fixtures.getTemplateData(cvsData)
 
   before(() => {
     injector.snapshot()
 
     injector.rebind(Symbol.for('CvsService')).toConstantValue(instance(cvsService))
     injector.bind(Symbol.for('TemplateService')).toConstantValue(instance(templateService))
-    injector.bind(Symbol.for('FactoryService')).toConstantValue(instance(factoryService))
+    injector.rebind(Symbol.for('FactoryService')).toConstantValue(instance(factoryService))
 
     interactor = injector.get(MakeSimpleCardsInteractor)
   })
