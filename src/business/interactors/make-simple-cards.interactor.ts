@@ -23,7 +23,7 @@ export class MakeSimpleCardsInteractor implements Interactor<SimpleCardConfig, s
     const cvsData = this.cvsService.readFromFile(param.input)
     const templateData = this.factoryService.buildTemplateData(cvsData)
 
-    return this.templateService.generateFile(param.template, param.output, templateData)
+    return this.templateService.generateHtml(param.template, param.output, templateData)
   }
 
 }

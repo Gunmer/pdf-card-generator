@@ -26,7 +26,7 @@ describe('MakeSimpleCardsInteractor', () => {
     injector.snapshot()
 
     injector.rebind(Symbol.for('CvsService')).toConstantValue(instance(cvsService))
-    injector.bind(Symbol.for('TemplateService')).toConstantValue(instance(templateService))
+    injector.rebind(Symbol.for('TemplateService')).toConstantValue(instance(templateService))
     injector.rebind(Symbol.for('FactoryService')).toConstantValue(instance(factoryService))
 
     interactor = injector.get(MakeSimpleCardsInteractor)
@@ -46,7 +46,7 @@ describe('MakeSimpleCardsInteractor', () => {
 
     await interactor.execute({input: filePath, output: outputFile, template: templateFile})
 
-    verify(templateService.generateFile(templateFile, outputFile, templateData)).called()
+    verify(templateService.generateHtml(templateFile, outputFile, templateData)).called()
   })
 
 })
