@@ -1,7 +1,11 @@
-import parse = require('csv-parse/lib/sync')
+import * as parse from 'csv-parse/lib/sync'
 import * as fs from 'fs'
+import {injectable} from 'inversify'
 
-export class CvsService {
+import {CvsService} from '../business/services/cvs.service'
+
+@injectable()
+export class CvsParseService implements CvsService {
   readFromFile(filePath: string) {
     const cvsFile = fs.readFileSync(filePath)
     return parse(cvsFile, {
