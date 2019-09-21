@@ -3,7 +3,7 @@ import {inject, injectable} from 'inversify'
 import {BusinessTypes} from '../business.module'
 import {CvsService} from '../services/cvs.service'
 import {FactoryService} from '../services/factory.service'
-import {TemplateService} from '../services/template.service'
+import {FileGeneratorService} from '../services/file-generator.service'
 
 import {Interactor} from './interactor'
 
@@ -12,8 +12,8 @@ export class MakeSimpleCardsInteractor implements Interactor<SimpleCardConfig, s
   constructor(
     @inject(BusinessTypes.CvsService)
     private readonly cvsService: CvsService,
-    @inject(BusinessTypes.TemplateService)
-    private readonly templateService: TemplateService,
+    @inject(BusinessTypes.FileGeneratorService)
+    private readonly fileGeneratorService: FileGeneratorService,
     @inject(BusinessTypes.FactoryService)
     private readonly factoryService: FactoryService,
   ) {
@@ -23,7 +23,7 @@ export class MakeSimpleCardsInteractor implements Interactor<SimpleCardConfig, s
     const cvsData = this.cvsService.readFromFile(param.input)
     const templateData = this.factoryService.buildTemplateData(cvsData)
 
-    return this.templateService.generateHtml(param.template, param.output, templateData)
+    return this.fileGeneratorService.generateHtml(param.template, param.output, templateData)
   }
 
 }

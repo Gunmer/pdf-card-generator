@@ -3,10 +3,10 @@ import {injectable} from 'inversify'
 import * as Mustache from 'mustache'
 
 import {TemplateData} from '../business/models/template-data'
-import {TemplateService} from '../business/services/template.service'
+import {FileGeneratorService} from '../business/services/file-generator.service'
 
 @injectable()
-export class MustacheTemplateService implements TemplateService {
+export class DefaultFileGeneratorService implements FileGeneratorService {
   generateHtml(templateFile: string, outputFile: string, data: TemplateData): Promise<string> {
     const template = fs.readFileSync(templateFile).toString('utf8')
     const viewRendered = Mustache.render(template, data)

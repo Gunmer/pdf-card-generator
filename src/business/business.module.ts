@@ -4,7 +4,7 @@ import {MakeSimpleCardsInteractor} from './interactors/make-simple-cards.interac
 
 export const BusinessTypes = {
   CvsService: Symbol.for('CvsService'),
-  TemplateService: Symbol.for('TemplateService'),
+  FileGeneratorService: Symbol.for('FileGeneratorService'),
   FactoryService: Symbol.for('FactoryService'),
 }
 

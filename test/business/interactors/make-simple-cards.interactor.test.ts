@@ -5,7 +5,7 @@ import {instance, mock, verify, when} from 'ts-mockito'
 import {MakeSimpleCardsInteractor} from '../../../src/business/interactors/make-simple-cards.interactor'
 import {CvsService} from '../../../src/business/services/cvs.service'
 import {FactoryService} from '../../../src/business/services/factory.service'
-import {TemplateService} from '../../../src/business/services/template.service'
+import {FileGeneratorService} from '../../../src/business/services/file-generator.service'
 import injector from '../../../src/injector'
 import fixtures from '../../fixtures'
 
@@ -13,7 +13,7 @@ describe('MakeSimpleCardsInteractor', () => {
   let interactor: MakeSimpleCardsInteractor
 
   let cvsService: CvsService = mock<CvsService>()
-  let templateService = mock<TemplateService>()
+  let fileGeneratorService = mock<FileGeneratorService>()
   let factoryService = mock<FactoryService>()
 
   const filePath = 'file.cvs'
@@ -26,7 +26,7 @@ describe('MakeSimpleCardsInteractor', () => {
     injector.snapshot()
 
     injector.rebind(Symbol.for('CvsService')).toConstantValue(instance(cvsService))
-    injector.rebind(Symbol.for('TemplateService')).toConstantValue(instance(templateService))
+    injector.rebind(Symbol.for('FileGeneratorService')).toConstantValue(instance(fileGeneratorService))
     injector.rebind(Symbol.for('FactoryService')).toConstantValue(instance(factoryService))
 
     interactor = injector.get(MakeSimpleCardsInteractor)
@@ -46,7 +46,7 @@ describe('MakeSimpleCardsInteractor', () => {
 
     await interactor.execute({input: filePath, output: outputFile, template: templateFile})
 
-    verify(templateService.generateHtml(templateFile, outputFile, templateData)).called()
+    verify(fileGeneratorService.generateHtml(templateFile, outputFile, templateData)).called()
   })
 
 })

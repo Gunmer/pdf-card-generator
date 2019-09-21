@@ -4,12 +4,12 @@ import * as path from 'path'
 import 'reflect-metadata'
 
 import {BusinessTypes} from '../../src/business/business.module'
-import {TemplateService} from '../../src/business/services/template.service'
+import {FileGeneratorService} from '../../src/business/services/file-generator.service'
 import injector from '../../src/injector'
 import fixtures from '../fixtures'
 
 describe('TemplateService', () => {
-  let service: TemplateService
+  let service: FileGeneratorService
 
   const templateData = fixtures.getTemplateData()
   const templateFile = path.resolve(__dirname, '../resources/template.mustache')
@@ -18,7 +18,7 @@ describe('TemplateService', () => {
   before(() => {
     injector.snapshot()
 
-    service = injector.get<TemplateService>(BusinessTypes.TemplateService)
+    service = injector.get<FileGeneratorService>(BusinessTypes.FileGeneratorService)
   })
 
   afterEach(() => {
