@@ -2,6 +2,8 @@ import {inject, injectable} from 'inversify'
 
 import {BusinessTypes} from '../business.module'
 import {CvsService} from '../services/cvs.service'
+import {FactoryService} from '../services/factory.service'
+import {TemplateService} from '../services/template.service'
 
 import {Interactor} from './interactor'
 
@@ -10,17 +12,24 @@ export class MakeSimpleCardsInteractor implements Interactor<SimpleCardConfig, s
   constructor(
     @inject(BusinessTypes.CvsService)
     private readonly cvsService: CvsService,
+    @inject(BusinessTypes.TemplateService)
+    private readonly templateService: TemplateService,
+    @inject(BusinessTypes.FactoryService)
+    private readonly factoryService: FactoryService,
   ) {
   }
 
   execute(param: SimpleCardConfig): Promise<string> {
-    return Promise.reject('Not implement yet')
+    const cvsData = this.cvsService.readFromFile(param.input)
+    const templateData = this.factoryService.buildTemplateData(cvsData)
+
+    return this.templateService.generateFile(param.template, param.output, templateData)
   }
 
 }
 
 export interface SimpleCardConfig {
   template: string,
-  data: object,
+  input: string,
   output: string
 }
