@@ -13,7 +13,6 @@ describe('TemplateService', () => {
 
   const templateData = fixtures.getTemplateData()
   const templateFile = fixtures.getTemplateFilePath()
-  const outputFile = path.resolve(__dirname, '../resources/template.html')
 
   before(() => {
     injector.snapshot()
@@ -21,11 +20,11 @@ describe('TemplateService', () => {
     service = injector.get<FileGeneratorService>(BusinessTypes.FileGeneratorService)
   })
 
-  afterEach(() => {
-    if (fs.existsSync(outputFile)) {
-      fs.unlinkSync(outputFile)
+  function _deleteFileIfExist(file: string) {
+    if (fs.existsSync(file)) {
+      fs.unlinkSync(file)
     }
-  })
+  }
 
   after(() => {
     injector.restore()
@@ -35,16 +34,40 @@ describe('TemplateService', () => {
     expect(service).not.undefined
   })
 
-  test.it('should be return path of output file', async () => {
+  test.it('should be return path of json file', async () => {
+    const outputFile = path.resolve(__dirname, '../resources/data.json')
+
+    const generateFile = await service.generateJson(outputFile, templateData)
+
+    expect(generateFile).not.undefined
+    _deleteFileIfExist(outputFile)
+  })
+
+  test.it('should generate html json', async () => {
+    const outputFile = path.resolve(__dirname, '../resources/data.json')
+
+    const generateFile = await service.generateJson(outputFile, templateData)
+
+    expect(fs.existsSync(generateFile)).is.true
+    _deleteFileIfExist(outputFile)
+  })
+
+  test.it('should be return path of html file', async () => {
+    const outputFile = path.resolve(__dirname, '../resources/template.html')
+
     const generateFile = await service.generateHtml(templateFile, outputFile, templateData)
 
     expect(generateFile).not.undefined
+    _deleteFileIfExist(outputFile)
   })
 
-  test.it('should generate file', async () => {
+  test.it('should generate html file', async () => {
+    const outputFile = path.resolve(__dirname, '../resources/template.html')
+
     const generateFile = await service.generateHtml(templateFile, outputFile, templateData)
 
     expect(fs.existsSync(generateFile)).is.true
+    _deleteFileIfExist(outputFile)
   })
 
 })

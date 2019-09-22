@@ -5,7 +5,7 @@ import {TemplateData} from '../src/business/models/template-data'
 class Fixtures {
   // noinspection JSMethodCanBeStatic
   getSimpleCvsData() {
-    return [Object.create({id: '1', name: 'name1'}), Object.create({id: '2', name: 'name2'})]
+    return [{id: '1', name: 'name1'}, {id: '2', name: 'name2'}]
   }
 
   getTemplateData(rows?: object[]) {

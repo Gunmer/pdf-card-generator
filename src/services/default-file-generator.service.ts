@@ -15,4 +15,11 @@ export class DefaultFileGeneratorService implements FileGeneratorService {
 
     return Promise.resolve(outputFile)
   }
+
+  generateJson(outputFile: string, data: TemplateData): Promise<string> {
+    const json = JSON.stringify(data, null, 4)
+    fs.writeFileSync(outputFile, json)
+
+    return Promise.resolve(outputFile)
+  }
 }
