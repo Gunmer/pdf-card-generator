@@ -12,7 +12,7 @@ describe('TemplateService', () => {
   let service: FileGeneratorService
 
   const templateData = fixtures.getTemplateData()
-  const templateFile = path.resolve(__dirname, '../resources/template.mustache')
+  const templateFile = fixtures.getTemplateFilePath()
   const outputFile = path.resolve(__dirname, '../resources/template.html')
 
   before(() => {

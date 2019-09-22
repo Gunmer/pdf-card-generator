@@ -1,3 +1,5 @@
+import * as path from 'path'
+
 import {TemplateData} from '../src/business/models/template-data'
 
 class Fixtures {
@@ -13,6 +15,22 @@ class Fixtures {
 
     return new TemplateData(rows)
   }
+
+  getCvsFilePath() {
+    return path.resolve(__dirname, './resources/tfs_work_items.csv')
+  }
+
+  getTemplateFilePath() {
+    return path.resolve(__dirname, './resources/template.mustache')
+  }
+
+  getTmpDir(append?: string) {
+    if (append) {
+      return path.resolve(__dirname, '../tmp', append)
+    }
+    return path.resolve(__dirname, '../tmp')
+  }
+
 }
 
 const fixtures = new Fixtures()
