@@ -21,16 +21,22 @@ export class MakeSimpleCardsInteractor implements Interactor<SimpleCardConfig, s
   ) {
   }
 
-  execute(param: SimpleCardConfig): Promise<string> {
+  async execute(param: SimpleCardConfig) {
     if (!fs.existsSync(param.outputDir)) {
       fs.mkdirSync(param.outputDir, {recursive: true})
     }
-    const outputHtmlFile = path.join(param.outputDir, path.parse(param.template).name + '.html')
+
+    const filename = path.parse(param.template).name
+    let outputJsonFile = path.join(param.outputDir, filename + '.json')
+    let outputHtmlFile = path.join(param.outputDir, filename + '.html')
+    let outputPdfFile = path.join(param.outputDir, filename + '.pdf')
 
     const cvsData = this.cvsService.readFromFile(param.input)
     const templateData = this.factoryService.buildTemplateData(cvsData)
 
-    return this.fileGeneratorService.generateHtml(param.template, outputHtmlFile, templateData)
+    await this.fileGeneratorService.generateJson(outputJsonFile, templateData)
+    await this.fileGeneratorService.generateHtml(param.template, outputHtmlFile, templateData)
+    return this.fileGeneratorService.generatePdf(outputPdfFile, outputHtmlFile)
   }
 
 }

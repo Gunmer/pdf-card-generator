@@ -7,6 +7,7 @@ import {BusinessTypes} from '../../src/business/business.module'
 import {FileGeneratorService} from '../../src/business/services/file-generator.service'
 import injector from '../../src/injector'
 import fixtures from '../fixtures'
+import testUtils from '../test-utils'
 
 describe('TemplateService', () => {
   let service: FileGeneratorService
@@ -19,12 +20,6 @@ describe('TemplateService', () => {
 
     service = injector.get<FileGeneratorService>(BusinessTypes.FileGeneratorService)
   })
-
-  function _deleteFileIfExist(file: string) {
-    if (fs.existsSync(file)) {
-      fs.unlinkSync(file)
-    }
-  }
 
   after(() => {
     injector.restore()
@@ -40,7 +35,7 @@ describe('TemplateService', () => {
     const generateFile = await service.generateJson(outputFile, templateData)
 
     expect(generateFile).not.undefined
-    _deleteFileIfExist(outputFile)
+    testUtils.deleteFileIfExist(outputFile)
   })
 
   test.it('should generate html json', async () => {
@@ -49,7 +44,7 @@ describe('TemplateService', () => {
     const generateFile = await service.generateJson(outputFile, templateData)
 
     expect(fs.existsSync(generateFile)).is.true
-    _deleteFileIfExist(outputFile)
+    testUtils.deleteFileIfExist(outputFile)
   })
 
   test.it('should be return path of html file', async () => {
@@ -58,7 +53,7 @@ describe('TemplateService', () => {
     const generateFile = await service.generateHtml(templateFile, outputFile, templateData)
 
     expect(generateFile).not.undefined
-    _deleteFileIfExist(outputFile)
+    testUtils.deleteFileIfExist(outputFile)
   })
 
   test.it('should generate html file', async () => {
@@ -67,7 +62,7 @@ describe('TemplateService', () => {
     const generateFile = await service.generateHtml(templateFile, outputFile, templateData)
 
     expect(fs.existsSync(generateFile)).is.true
-    _deleteFileIfExist(outputFile)
+    testUtils.deleteFileIfExist(outputFile)
   })
 
   test.it('should be return path of pdf file', async () => {
@@ -77,7 +72,7 @@ describe('TemplateService', () => {
     const generateFile = await service.generatePdf(outputFile, htmlFile)
 
     expect(generateFile).not.undefined
-    _deleteFileIfExist(outputFile)
+    testUtils.deleteFileIfExist(outputFile)
   })
 
   test.it('should generate pdf file', async () => {
@@ -87,7 +82,7 @@ describe('TemplateService', () => {
     const generateFile = await service.generatePdf(outputFile, htmlFile)
 
     expect(fs.existsSync(generateFile)).is.true
-    _deleteFileIfExist(outputFile)
+    testUtils.deleteFileIfExist(outputFile)
   })
 
 })

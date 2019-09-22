@@ -10,6 +10,7 @@ import {FactoryService} from '../../../src/business/services/factory.service'
 import {FileGeneratorService} from '../../../src/business/services/file-generator.service'
 import injector from '../../../src/injector'
 import fixtures from '../../fixtures'
+import testUtils from '../../test-utils'
 
 describe('MakeSimpleCardsInteractor', () => {
   let interactor: MakeSimpleCardsInteractor
@@ -45,7 +46,7 @@ describe('MakeSimpleCardsInteractor', () => {
     expect(interactor).not.undefined
   })
 
-  test.it('should be generate html', async () => {
+  test.it('should be generate json, html and pdf', async () => {
     const cvsData = fixtures.getSimpleCvsData()
     const templateData = fixtures.getTemplateData(cvsData)
 
@@ -54,18 +55,18 @@ describe('MakeSimpleCardsInteractor', () => {
 
     await interactor.execute({input: filePath, outputDir: __dirname, template: templateFile})
 
+    verify(fileGeneratorService.generateJson(anyString(), anyOfClass(TemplateData))).called()
     verify(fileGeneratorService.generateHtml(anyString(), anyString(), anyOfClass(TemplateData))).called()
+    verify(fileGeneratorService.generatePdf(anyString(), anyString())).called()
   })
 
   test.it('should be create output directory', async () => {
-    const outputDir = fixtures.getTmpDir('a/b/c')
-    if (fs.existsSync(outputDir)) {
-      fs.rmdirSync(outputDir)
-    }
+    const outputDir = fixtures.getTmpDir('a')
 
     await interactor.execute({input: filePath, outputDir, template: templateFile})
 
     expect(fs.existsSync(outputDir)).true
+    testUtils.deleteDirIfExist(outputDir)
   })
 
   test.it('should be capture the correct output file name', async () => {
