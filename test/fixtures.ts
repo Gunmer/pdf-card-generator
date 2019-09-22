@@ -5,7 +5,10 @@ import {TemplateData} from '../src/business/models/template-data'
 class Fixtures {
   // noinspection JSMethodCanBeStatic
   getSimpleCvsData() {
-    return [{id: '1', name: 'name1'}, {id: '2', name: 'name2'}]
+    return [
+      {id: '1', title: 'name1', message: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', image: 'https://picsum.photos/300'},
+      {id: '2', title: 'name2', message: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', image: 'https://picsum.photos/300'},
+    ]
   }
 
   getTemplateData(rows?: object[]) {
@@ -22,6 +25,10 @@ class Fixtures {
 
   getTemplateFilePath() {
     return path.resolve(__dirname, './resources/template.mustache')
+  }
+
+  getHtmlFilePath() {
+    return path.resolve(__dirname, './resources/page.html')
   }
 
   getTmpDir(append?: string) {

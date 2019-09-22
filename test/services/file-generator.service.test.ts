@@ -70,4 +70,24 @@ describe('TemplateService', () => {
     _deleteFileIfExist(outputFile)
   })
 
+  test.it('should be return path of pdf file', async () => {
+    const outputFile = path.resolve(__dirname, '../resources/file.pdf')
+    const htmlFile = fixtures.getHtmlFilePath()
+
+    const generateFile = await service.generatePdf(outputFile, htmlFile)
+
+    expect(generateFile).not.undefined
+    _deleteFileIfExist(outputFile)
+  })
+
+  test.it('should generate pdf file', async () => {
+    const outputFile = path.resolve(__dirname, '../resources/file.pdf')
+    const htmlFile = fixtures.getHtmlFilePath()
+
+    const generateFile = await service.generatePdf(outputFile, htmlFile)
+
+    expect(fs.existsSync(generateFile)).is.true
+    _deleteFileIfExist(outputFile)
+  })
+
 })
