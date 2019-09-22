@@ -10,7 +10,7 @@ import {FileGeneratorService} from '../services/file-generator.service'
 import {Interactor} from './interactor'
 
 @injectable()
-export class MakeSimpleCardsInteractor implements Interactor<SimpleCardConfig, string> {
+export class GenerateOutputFilesInteractor implements Interactor<SimpleCardConfig, string> {
   constructor(
     @inject(BusinessTypes.CvsService)
     private readonly cvsService: CvsService,

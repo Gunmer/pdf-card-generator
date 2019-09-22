@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import 'reflect-metadata'
 import {anyOfClass, anyString, capture, instance, mock, reset, verify, when} from 'ts-mockito'
 
-import {MakeSimpleCardsInteractor} from '../../../src/business/interactors/make-simple-cards.interactor'
+import {GenerateOutputFilesInteractor} from '../../../src/business/interactors/generate-output-files.interactor'
 import {TemplateData} from '../../../src/business/models/template-data'
 import {CvsService} from '../../../src/business/services/cvs.service'
 import {FactoryService} from '../../../src/business/services/factory.service'
@@ -12,8 +12,8 @@ import injector from '../../../src/injector'
 import fixtures from '../../fixtures'
 import testUtils from '../../test-utils'
 
-describe('MakeSimpleCardsInteractor', () => {
-  let interactor: MakeSimpleCardsInteractor
+describe('GenerateOutputFilesInteractor', () => {
+  let interactor: GenerateOutputFilesInteractor
 
   let cvsService: CvsService = mock<CvsService>()
   let fileGeneratorService = mock<FileGeneratorService>()
@@ -29,7 +29,7 @@ describe('MakeSimpleCardsInteractor', () => {
     injector.rebind(Symbol.for('FileGeneratorService')).toConstantValue(instance(fileGeneratorService))
     injector.rebind(Symbol.for('FactoryService')).toConstantValue(instance(factoryService))
 
-    interactor = injector.get(MakeSimpleCardsInteractor)
+    interactor = injector.get(GenerateOutputFilesInteractor)
   })
 
   afterEach(() => {
