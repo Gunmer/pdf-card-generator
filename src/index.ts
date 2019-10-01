@@ -1,6 +1,8 @@
 import {Command} from '@oclif/command'
 
+// @ts-ignore
 import {GenerateOutputFilesInteractor, SimpleCardConfig} from './business/interactors/generate-output-files.interactor'
+// @ts-ignore
 import injector from './injector'
 
 class CardMaker extends Command {

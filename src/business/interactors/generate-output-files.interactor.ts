@@ -1,8 +1,8 @@
 import * as fs from 'fs'
 import {inject, injectable} from 'inversify'
 import * as path from 'path'
+import 'reflect-metadata'
 
-import {BusinessTypes} from '../business.module'
 import {CvsService} from '../services/cvs.service'
 import {FactoryService} from '../services/factory.service'
 import {FileGeneratorService} from '../services/file-generator.service'
@@ -12,11 +12,11 @@ import {Interactor} from './interactor'
 @injectable()
 export class GenerateOutputFilesInteractor implements Interactor<SimpleCardConfig, string> {
   constructor(
-    @inject(BusinessTypes.CvsService)
+    @inject('CvsService')
     private readonly cvsService: CvsService,
-    @inject(BusinessTypes.FileGeneratorService)
+    @inject('FileGeneratorService')
     private readonly fileGeneratorService: FileGeneratorService,
-    @inject(BusinessTypes.FactoryService)
+    @inject('FactoryService')
     private readonly factoryService: FactoryService,
   ) {
   }

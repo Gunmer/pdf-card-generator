@@ -39,6 +39,13 @@ class Fixtures {
     return path.resolve(__dirname, '../tmp')
   }
 
+  getResourcesDir(append?: string) {
+    if (append) {
+      return path.resolve(__dirname, './resources', append)
+    }
+    return path.resolve(__dirname, './resources')
+  }
+
 }
 
 const fixtures = new Fixtures()

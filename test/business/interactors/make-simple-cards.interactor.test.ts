@@ -25,9 +25,9 @@ describe('GenerateOutputFilesInteractor', () => {
   before(() => {
     injector.snapshot()
 
-    injector.rebind(Symbol.for('CvsService')).toConstantValue(instance(cvsService))
-    injector.rebind(Symbol.for('FileGeneratorService')).toConstantValue(instance(fileGeneratorService))
-    injector.rebind(Symbol.for('FactoryService')).toConstantValue(instance(factoryService))
+    injector.rebind('CvsService').toConstantValue(instance(cvsService))
+    injector.rebind('FileGeneratorService').toConstantValue(instance(fileGeneratorService))
+    injector.rebind('FactoryService').toConstantValue(instance(factoryService))
 
     interactor = injector.get(GenerateOutputFilesInteractor)
   })
