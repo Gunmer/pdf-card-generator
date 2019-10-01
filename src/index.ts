@@ -1,29 +1,32 @@
-import {Command, flags} from '@oclif/command'
+import {Command} from '@oclif/command'
 
-class TfsCards extends Command {
-  static description = 'describe the command here'
+import {GenerateOutputFilesInteractor, SimpleCardConfig} from './business/interactors/generate-output-files.interactor'
+import injector from './injector'
 
-  static flags = {
-    // add --version flag to show CLI version
-    version: flags.version({char: 'v'}),
-    help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
-  }
+class CardMaker extends Command {
+  static description = 'Generate PDF documents'
 
-  static args = [{name: 'file'}]
+  static args = [
+    {name: 'input', description: 'Cvs file input'},
+    {name: 'template', description: 'Mustache template'},
+    {name: 'output', description: 'Output directory'},
+  ]
+
+  private readonly interactor = injector.get(GenerateOutputFilesInteractor)
 
   async run() {
-    const {args, flags} = this.parse(TfsCards)
+    const parse = this.parse(CardMaker)
 
-    const name = flags.name || 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    const param: SimpleCardConfig = {
+      input: parse.args.input,
+      template: parse.args.template,
+      outputDir: parse.args.output,
     }
+
+    const pdfFile = await this.interactor.execute(param)
+
+    this.log(`${pdfFile} generated`)
   }
 }
 
-export = TfsCards
+export = CardMaker

@@ -1,0 +1,29 @@
+<html lang="ES">
+<header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</header>
+<body>
+<div class="container">
+    {{#rows}}
+    <div class="card col-4">
+        <table class="table">
+            <tr>
+                <td>{{id}}</td>
+                <td>{{project}}</td>
+                <td>{{state}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">{{title}}</td>
+            </tr>
+            <tr>
+                <td>{{effort}}</td>
+                <td>{{project}}</td>
+                <td>{{assignedTo}}</td>
+            </tr>
+        </table>
+    </div>
+    {{/rows}}
+</div>
+</body>
+</html>

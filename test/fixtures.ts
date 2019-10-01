@@ -23,8 +23,9 @@ class Fixtures {
     return path.resolve(__dirname, './resources/tfs_work_items.csv')
   }
 
-  getTemplateFilePath() {
-    return path.resolve(__dirname, './resources/template.mustache')
+  getTemplateFilePath(template?: string) {
+    const file = template || 'template'
+    return path.resolve(__dirname, `./resources/${file}.mustache`)
   }
 
   getHtmlFilePath() {
