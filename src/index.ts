@@ -1,4 +1,5 @@
 import {Command} from '@oclif/command'
+import * as inquirer from 'inquirer'
 
 import {FindFileInteractor} from './business/interactors/find-file.interactor'
 // @ts-ignore
@@ -25,8 +26,9 @@ class CardMaker extends Command implements UI {
     await this.presenter.run()
   }
 
-  choose(message: string, options: string[]): Promise<string> {
-    return Promise.resolve('test/resources/demo.mustache')
+  async choose(message: string, options: string[]): Promise<string> {
+    const prompt = await inquirer.prompt({type: 'list', message, choices: options, name: 'answer'})
+    return prompt.answer
   }
 
   getInputFile(): string {

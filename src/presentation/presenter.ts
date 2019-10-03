@@ -33,7 +33,8 @@ export class Presenter {
       return Promise.resolve(csv)
     }
 
-    return this.ui.choose('Choose a csv file', csvFiles)
+    const csv = await this.ui.choose('Choose a csv file', csvFiles)
+    return Promise.resolve(path.join(workDir, csv))
   }
 
   private async selectMustacheFile(workDir: string) {
@@ -46,7 +47,8 @@ export class Presenter {
       return Promise.resolve(template)
     }
 
-    return this.ui.choose('Choose a csv file', mustacheFiles)
+    const template = await this.ui.choose('Choose a csv file', mustacheFiles)
+    return Promise.resolve(path.join(workDir, template))
   }
 
 }
