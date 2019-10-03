@@ -7,9 +7,15 @@ import fixtures from './fixtures'
 describe('tfs-cards', () => {
   test
     .stdout()
-    .do(() => cmd.run([fixtures.getCvsFilePath(), fixtures.getTemplateFilePath('tfs'), fixtures.getTmpDir()]))
-    .it('runs hello', ctx => {
-      expect(ctx.stdout).to.contain('generated')
+    .do(() => cmd.run([fixtures.getResourcesDir(), fixtures.getCvsFilePath(), fixtures.getTemplateFilePath('demo')]))
+    .it('runs with workDir, inputFile and template', ctx => {
+      expect(ctx.stdout).to.eql(`The file has been generated: ${fixtures.getResourcesDir('demo.pdf')}\n`)
     })
 
+  test
+    .stdout()
+    .do(() => cmd.run([fixtures.getResourcesDir()]))
+    .it('runs with workDir', ctx => {
+      expect(ctx.stdout).to.eql(`The file has been generated: ${fixtures.getResourcesDir('demo.pdf')}\n`)
+    })
 })

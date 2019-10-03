@@ -26,14 +26,14 @@ describe('FindFileInteractor', () => {
     const files = await interactor.execute({ext: '.csv', workDir: fixtures.getResourcesDir()})
 
     expect(files).has.lengthOf(1)
-    expect(files).contain('tfs_work_items.csv')
+    expect(files).contain('demo.csv')
   })
 
   test.it('should be find mustache files', async () => {
     const files = await interactor.execute({ext: '.mustache', workDir: fixtures.getResourcesDir()})
 
     expect(files).has.lengthOf(2)
-    expect(files).contain('tfs.mustache')
+    expect(files).contain('demo.mustache')
   })
 
 })

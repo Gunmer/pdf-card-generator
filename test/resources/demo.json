@@ -1,0 +1,274 @@
+{
+    "rows": [
+        {
+            "id": "42739",
+            "workItemType": "Product Backlog Item",
+            "title": "BMI 2.0 - Cambiar a modelo en couchbase",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "",
+            "effort": "5",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Committed"
+        },
+        {
+            "id": "42740",
+            "workItemType": "Task",
+            "title": "BMI 2.0 - Cambiar a modelo en couchbase",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "5",
+            "effort": "",
+            "project": "",
+            "state": "In Progress"
+        },
+        {
+            "id": "43238",
+            "workItemType": "Product Backlog Item",
+            "title": "Hipotecas - Control de errores en tasación",
+            "assignedTo": "Cristiam Sosa <cristiam.sosa@innocv.com>",
+            "remainingWork": "",
+            "effort": "2",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Committed"
+        },
+        {
+            "id": "43239",
+            "workItemType": "Task",
+            "title": "Hipotecas - Añadir control de errores en tasación",
+            "assignedTo": "Alberto García <alberto.garcia@innocv.com>",
+            "remainingWork": "4",
+            "effort": "",
+            "project": "",
+            "state": "Code Review"
+        },
+        {
+            "id": "43240",
+            "workItemType": "Product Backlog Item",
+            "title": "Hipotecas - Guardar información de tasación en SF",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "",
+            "effort": "3",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "QA"
+        },
+        {
+            "id": "43242",
+            "workItemType": "Product Backlog Item",
+            "title": "Hipotecas - Diccionarios",
+            "assignedTo": "Cristiam Sosa <cristiam.sosa@innocv.com>",
+            "remainingWork": "",
+            "effort": "2",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Committed"
+        },
+        {
+            "id": "43244",
+            "workItemType": "Task",
+            "title": "Hipotecas - Diccionarios - Crear endpoint de descarga",
+            "assignedTo": "Cristiam Sosa <cristiam.sosa@innocv.com>",
+            "remainingWork": "4",
+            "effort": "",
+            "project": "",
+            "state": "Code Review"
+        },
+        {
+            "id": "43803",
+            "workItemType": "Product Backlog Item",
+            "title": "Hipotecas - Nota simple - Eliminar nodos bloqueantes",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "",
+            "effort": "2",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Committed"
+        },
+        {
+            "id": "43821",
+            "workItemType": "Product Backlog Item",
+            "title": "Hipotecas - Get nota simple",
+            "assignedTo": "",
+            "remainingWork": "",
+            "effort": "2",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Removed"
+        },
+        {
+            "id": "43822",
+            "workItemType": "Product Backlog Item",
+            "title": "Hipotecas - Get tasación",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "",
+            "effort": "2",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Approved"
+        },
+        {
+            "id": "43826",
+            "workItemType": "Product Backlog Item",
+            "title": "Hipotecas - Meter cache",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "",
+            "effort": "3",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Approved"
+        },
+        {
+            "id": "43828",
+            "workItemType": "Product Backlog Item",
+            "title": "BMI 2.0 - Crear modelos para extensión de la config",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "",
+            "effort": "3",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Approved"
+        },
+        {
+            "id": "43830",
+            "workItemType": "Task",
+            "title": "BMI 2.0 - Mergear properties con los campos obtenidos de la 'default'",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "4",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        },
+        {
+            "id": "43834",
+            "workItemType": "Product Backlog Item",
+            "title": "TINK - Hablar con la gente de Tink para revisar los dnis con casesensitive",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "",
+            "effort": "1",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Approved"
+        },
+        {
+            "id": "43835",
+            "workItemType": "Task",
+            "title": "Hipotecas - Nota simple - Eliminar llamadas a modellica",
+            "assignedTo": "Alberto García <alberto.garcia@innocv.com>",
+            "remainingWork": "1",
+            "effort": "",
+            "project": "",
+            "state": "In Progress"
+        },
+        {
+            "id": "43836",
+            "workItemType": "Task",
+            "title": "Hipotecas - Nota simple - Revisar y eliminar evaluación de riesgo",
+            "assignedTo": "Alberto García <alberto.garcia@innocv.com>",
+            "remainingWork": "3",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        },
+        {
+            "id": "43837",
+            "workItemType": "Task",
+            "title": "Hipotecas - Tasación - Añadir cajita de guradado",
+            "assignedTo": "Alberto García <alberto.garcia@innocv.com>",
+            "remainingWork": "3",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        },
+        {
+            "id": "43838",
+            "workItemType": "Product Backlog Item",
+            "title": "Hipotecas - Tasación - Guardar datos de tasacion en SF",
+            "assignedTo": "Cristiam Sosa <cristiam.sosa@innocv.com>",
+            "remainingWork": "",
+            "effort": "2",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Approved"
+        },
+        {
+            "id": "43839",
+            "workItemType": "Task",
+            "title": "Hipotecas - Tasacion - Separar la obtencion de URL del TPV",
+            "assignedTo": "",
+            "remainingWork": "",
+            "effort": "",
+            "project": "",
+            "state": "Removed"
+        },
+        {
+            "id": "43842",
+            "workItemType": "Task",
+            "title": "Hipotecas - Get tasación",
+            "assignedTo": "Cristiam Sosa <cristiam.sosa@innocv.com>",
+            "remainingWork": "3",
+            "effort": "",
+            "project": "",
+            "state": "In Progress"
+        },
+        {
+            "id": "43843",
+            "workItemType": "Task",
+            "title": "Hipotecas - Meter cache con spring",
+            "assignedTo": "Cristiam Sosa <cristiam.sosa@innocv.com>",
+            "remainingWork": "3",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        },
+        {
+            "id": "43844",
+            "workItemType": "Task",
+            "title": "Hipotecas - Guardar caché en redis",
+            "assignedTo": "Cristiam Sosa <cristiam.sosa@innocv.com>",
+            "remainingWork": "2",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        },
+        {
+            "id": "43846",
+            "workItemType": "Task",
+            "title": "BMI 2.0 - Crear modelo para xSell y recuperar la info de couchbase",
+            "assignedTo": "Alberto García <alberto.garcia@innocv.com>",
+            "remainingWork": "4",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        },
+        {
+            "id": "43847",
+            "workItemType": "Task",
+            "title": "BMI 2.0 - Mapear dentro del objeto configuration de usuario",
+            "assignedTo": "Alberto García <alberto.garcia@innocv.com>",
+            "remainingWork": "2",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        },
+        {
+            "id": "43886",
+            "workItemType": "Task",
+            "title": "Hipotecas - Diccionarios - Actualizar JSON",
+            "assignedTo": "Cristiam Sosa <cristiam.sosa@innocv.com>",
+            "remainingWork": "2",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        },
+        {
+            "id": "43994",
+            "workItemType": "Product Backlog Item",
+            "title": "TINK - Investigar adaptation a PSD2",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "",
+            "effort": "3",
+            "project": "EB133 - Plataforma Analítica Inteligente (BigData PAI)",
+            "state": "Approved"
+        },
+        {
+            "id": "43995",
+            "workItemType": "Task",
+            "title": "TINK - Investigar adaptation a PSD2",
+            "assignedTo": "Alfonso Conti <alfonso.conti@innocv.com>",
+            "remainingWork": "7",
+            "effort": "",
+            "project": "",
+            "state": "To Do"
+        }
+    ]
+}

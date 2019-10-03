@@ -1,33 +1,48 @@
 import {Command} from '@oclif/command'
 
+import {FindFileInteractor} from './business/interactors/find-file.interactor'
 // @ts-ignore
-import {GenerateOutputFilesInteractor, SimpleCardConfig} from './business/interactors/generate-output-files.interactor'
+import {GenerateOutputFilesInteractor} from './business/interactors/generate-output-files.interactor'
 // @ts-ignore
 import injector from './injector'
+import {Presenter} from './presentation/presenter'
+import {UI} from './presentation/ui'
 
-class CardMaker extends Command {
+class CardMaker extends Command implements UI {
   static description = 'Generate PDF documents'
 
   static args = [
-    {name: 'input', description: 'Cvs file input'},
-    {name: 'template', description: 'Mustache template'},
-    {name: 'output', description: 'Output directory'},
+    {name: 'workDir', required: true, description: 'Work directory'},
+    {name: 'input', required: false, description: 'Cvs file input'},
+    {name: 'template', required: false, description: 'Mustache template'},
   ]
 
-  private readonly interactor = injector.get(GenerateOutputFilesInteractor)
+  private readonly findFile = injector.get(FindFileInteractor)
+  private readonly generateOutputFiles = injector.get(GenerateOutputFilesInteractor)
+  private readonly presenter = new Presenter(this, this.generateOutputFiles, this.findFile)
 
   async run() {
-    const parse = this.parse(CardMaker)
+    await this.presenter.run()
+  }
 
-    const param: SimpleCardConfig = {
-      input: parse.args.input,
-      template: parse.args.template,
-      outputDir: parse.args.output,
-    }
+  choose(message: string, options: string[]): Promise<string> {
+    return Promise.resolve('test/resources/demo.mustache')
+  }
 
-    const pdfFile = await this.interactor.execute(param)
+  getInputFile(): string {
+    return this.parse(CardMaker).args.input
+  }
 
-    this.log(`${pdfFile} generated`)
+  getTemplateFile(): string {
+    return this.parse(CardMaker).args.template
+  }
+
+  getWorkDir(): string {
+    return this.parse(CardMaker).args.workDir
+  }
+
+  showResult(outputFile: string): void {
+    this.log(`The file has been generated: ${outputFile}`)
   }
 }
 

@@ -20,7 +20,7 @@ class Fixtures {
   }
 
   getCvsFilePath() {
-    return path.resolve(__dirname, './resources/tfs_work_items.csv')
+    return path.resolve(__dirname, './resources/demo.csv')
   }
 
   getTemplateFilePath(template?: string) {
@@ -29,7 +29,7 @@ class Fixtures {
   }
 
   getHtmlFilePath() {
-    return path.resolve(__dirname, './resources/page.html')
+    return path.resolve(__dirname, './resources/demo.html')
   }
 
   getTmpDir(append?: string) {
