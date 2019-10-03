@@ -1,12 +1,12 @@
 {
-  "name": "card-maker",
+  "name": "pdf-card-generator",
   "description": "Generate cards from tfs",
   "version": "1.0.0",
   "author": "Cristiam Sosa @Gunmer",
   "bin": {
-    "cardMaker": "./bin/run"
+    "cardGen": "./bin/run"
   },
-  "bugs": "https://github.com/Gunmer/card-maker/issues",
+  "bugs": "https://github.com/Gunmer/pdf-card-generator/issues",
   "dependencies": {
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.13.3",
@@ -44,20 +44,20 @@
     "/bin",
     "/lib"
   ],
-  "homepage": "https://github.com/Gunmer/card-maker",
+  "homepage": "https://github.com/Gunmer/pdf-card-generator",
   "keywords": [
     "oclif",
     "cli",
-    "card-maker",
+    "pdf-card-generator",
     "pdf-generator",
     "terminal"
   ],
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "bin": "cardMaker"
+    "bin": "cardGen"
   },
-  "repository": "Gunmer/card-maker",
+  "repository": "Gunmer/pdf-card-generator",
   "scripts": {
     "posttest": "tslint -p test -t stylish",
     "prepack": "rm -rf lib && tsc -b",
