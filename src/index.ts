@@ -1,16 +1,18 @@
-import {Command} from '@oclif/command'
+import {Command, flags} from '@oclif/command'
 import * as inquirer from 'inquirer'
+import * as path from 'path'
 
 import {FindFileInteractor} from './business/interactors/find-file.interactor'
-// @ts-ignore
 import {GenerateOutputFilesInteractor} from './business/interactors/generate-output-files.interactor'
-// @ts-ignore
 import injector from './injector'
-import {Presenter} from './presentation/presenter'
-import {UI} from './presentation/ui'
 
-class CardMaker extends Command implements UI {
+class CardMaker extends Command {
   static description = 'Generate PDF documents'
+
+  static flags = {
+    version: flags.version({char: 'v'}),
+    help: flags.help({char: 'h'}),
+  }
 
   static args = [
     {name: 'workDir', required: true, description: 'Work directory'},
@@ -20,10 +22,20 @@ class CardMaker extends Command implements UI {
 
   private readonly findFile = injector.get(FindFileInteractor)
   private readonly generateOutputFiles = injector.get(GenerateOutputFilesInteractor)
-  private readonly presenter = new Presenter(this, this.generateOutputFiles, this.findFile)
 
   async run() {
-    await this.presenter.run()
+    const parse = this.parse(CardMaker)
+    const workDir = parse.args.workDir
+
+    const inputFile = parse.args.input || await this.selectCsvFile(workDir)
+    const templateFile = parse.args.template || await this.selectMustacheFile(workDir)
+
+    const outputFile = await this.generateOutputFiles.execute({
+      input: inputFile,
+      template: templateFile,
+      outputDir: workDir
+    })
+    this.log(`The file has been generated: ${outputFile}`)
   }
 
   async choose(message: string, options: string[]): Promise<string> {
@@ -31,21 +43,34 @@ class CardMaker extends Command implements UI {
     return prompt.answer
   }
 
-  getInputFile(): string {
-    return this.parse(CardMaker).args.input
+  private async selectCsvFile(workDir: string) {
+    const csvFiles = await this.findFile.execute({workDir, ext: '.csv'})
+
+    if (!csvFiles) return Promise.reject('No csv file found')
+
+    if (csvFiles.length === 1) {
+      const csv = path.join(workDir, ...csvFiles)
+      return Promise.resolve(csv)
+    }
+
+    const csv = await this.choose('Choose a csv file', csvFiles)
+    return Promise.resolve(path.join(workDir, csv))
   }
 
-  getTemplateFile(): string {
-    return this.parse(CardMaker).args.template
+  private async selectMustacheFile(workDir: string) {
+    const mustacheFiles = await this.findFile.execute({workDir, ext: '.mustache'})
+
+    if (!mustacheFiles) return Promise.reject('No mustache file found')
+
+    if (mustacheFiles.length === 1) {
+      const template = path.join(workDir, ...mustacheFiles)
+      return Promise.resolve(template)
+    }
+
+    const template = await this.choose('Choose a csv file', mustacheFiles)
+    return Promise.resolve(path.join(workDir, template))
   }
 
-  getWorkDir(): string {
-    return this.parse(CardMaker).args.workDir
-  }
-
-  showResult(outputFile: string): void {
-    this.log(`The file has been generated: ${outputFile}`)
-  }
 }
 
 export = CardMaker

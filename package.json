@@ -1,7 +1,7 @@
 {
   "name": "card-maker",
   "description": "Generate cards from tfs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Cristiam Sosa @Gunmer",
   "bin": {
     "cardMaker": "./bin/run"
@@ -46,7 +46,11 @@
   ],
   "homepage": "https://github.com/Gunmer/card-maker",
   "keywords": [
-    "oclif"
+    "oclif",
+    "cli",
+    "card-maker",
+    "pdf-generator",
+    "terminal"
   ],
   "license": "MIT",
   "main": "lib/index.js",
