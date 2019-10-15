@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import * as pdf from 'html-pdf'
+import * as HTML5ToPDF from 'html5-to-pdf'
 import {injectable} from 'inversify'
 import * as Mustache from 'mustache'
 
@@ -28,16 +28,17 @@ export class DefaultFileGeneratorService implements FileGeneratorService {
     })
   }
 
-  generatePdf(outputFile: string, htmlFile: string): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      const html = fs.readFileSync(htmlFile, 'utf8')
-      pdf.create(html, {format: 'A4'}).toFile(outputFile, (err, res) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(res.filename)
-        }
-      })
+  async generatePdf(outputFile: string, htmlFile: string): Promise<string> {
+    const html5ToPDF = new HTML5ToPDF({
+      inputPath: htmlFile,
+      outputPath: outputFile,
+      pdf: {format: 'A4', landscape: false, preferCSSPageSize: true}
     })
+
+    await html5ToPDF.start()
+    await html5ToPDF.build()
+    await html5ToPDF.close()
+
+    return Promise.resolve(outputFile)
   }
 }

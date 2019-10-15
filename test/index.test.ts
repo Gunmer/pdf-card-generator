@@ -10,7 +10,7 @@ describe('tfs-cards', () => {
     .stdout()
     .do(() => cmd.run([fixtures.getResourcesDir(), fixtures.getCvsFilePath(), fixtures.getTemplateFilePath('demo')]))
     .it('runs with workDir, inputFile and template', ctx => {
-      expect(ctx.stdout).to.eql(`The file has been generated: ${fixtures.getResourcesDir('demo.pdf')}\n`)
+      expect(ctx.stdout).to.contain(`the file has been generated: ${fixtures.getResourcesDir('demo.pdf')}\n`)
     })
 
   test
@@ -18,6 +18,6 @@ describe('tfs-cards', () => {
     .stub(inquirer, 'prompt', () => Promise.resolve({answer: 'demo.mustache'}))
     .do(() => cmd.run([fixtures.getResourcesDir()]))
     .it('runs with workDir', ctx => {
-      expect(ctx.stdout).to.eql(`The file has been generated: ${fixtures.getResourcesDir('demo.pdf')}\n`)
+      expect(ctx.stdout).to.contain(`the file has been generated: ${fixtures.getResourcesDir('demo.pdf')}\n`)
     })
 })

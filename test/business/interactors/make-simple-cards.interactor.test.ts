@@ -75,7 +75,7 @@ describe('GenerateOutputFilesInteractor', () => {
     await interactor.execute({input: filePath, outputDir, template: templateFile})
 
     const outputFile = capture(fileGeneratorService.generateHtml).first()[1]
-    expect(outputFile).is.eqls(`${outputDir}/demo.html`)
+    expect(outputFile).is.eqls(`${outputDir}/template.html`)
   })
 
 })

@@ -27,15 +27,17 @@ class CardMaker extends Command {
     const parse = this.parse(CardMaker)
     const workDir = parse.args.workDir
 
+    this.log(`Scanning ${workDir} directory ...`)
     const inputFile = parse.args.input || await this.selectCsvFile(workDir)
     const templateFile = parse.args.template || await this.selectMustacheFile(workDir)
 
+    this.log('... start file generations ...')
     const outputFile = await this.generateOutputFiles.execute({
       input: inputFile,
       template: templateFile,
       outputDir: workDir
     })
-    this.log(`The file has been generated: ${outputFile}`)
+    this.log(`... the file has been generated: ${outputFile}`)
   }
 
   async choose(message: string, options: string[]): Promise<string> {
