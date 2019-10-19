@@ -21,6 +21,7 @@
     "tslib": "^1.10.0"
   },
   "devDependencies": {
+    "@oclif/dev-cli": "^1.22.2",
     "@oclif/test": "^1.2.5",
     "@oclif/tslint": "^3.1.1",
     "@types/chai": "^4.2.3",
@@ -61,7 +62,9 @@
   "scripts": {
     "posttest": "tslint -p test -t stylish",
     "prepack": "rm -rf lib && tsc -b",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
+    "postpack": "rm -f oclif.manifest.json",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts"
 }
