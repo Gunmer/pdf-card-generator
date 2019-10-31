@@ -32,7 +32,7 @@ export class DefaultFileGeneratorService implements FileGeneratorService {
     const html5ToPDF = new HTML5ToPDF({
       inputPath: htmlFile,
       outputPath: outputFile,
-      pdf: {format: 'A4', landscape: false, preferCSSPageSize: true}
+      pdf: {format: 'A4', landscape: false, preferCSSPageSize: true, printBackground: true}
     })
 
     await html5ToPDF.start()

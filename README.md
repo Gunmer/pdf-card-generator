@@ -5,7 +5,7 @@
 [![Downloads/week](https://img.shields.io/npm/dw/tfs-cards.svg)](https://npmjs.org/package/pdf-card-generator)
 [![License](https://img.shields.io/npm/l/tfs-cards.svg)](https://github.com/Gunmer/pdf-card-generator/blob/master/package.json)
 
-It generates cards for scrum or kamban from a csv file and a mustache template.
+It generates cards for scrum or kanban from a csv file and a mustache template.
 
 As a result, it generates a json with the data extracted from the csv, an htm file and finally the resulting pdf.
 
@@ -34,4 +34,11 @@ USAGE
 ```
 
 ## Use
+```shell script
+$ cardGen ~/Desktop/cards
+Scanning /Users/cristiam/Desktop/cards directory ...
+... start file generations ...
+... the file has been generated: /Users/cristiam/Desktop/cards/winterfell.pdf
+```
 
+If in the working directory we have more than one csv or mustache file, the application will ask us which file to use
