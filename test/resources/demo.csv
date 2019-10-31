@@ -1,28 +1,77 @@
-﻿ID,Work Item Type,Title,Assigned To,Remaining Work,Effort,Project,State
-"42739","Product Backlog Item","BMI 2.0 - Cambiar a modelo en couchbase","Alfonso Conti <alfonso.conti@innocv.com>",,"5","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Committed"
-"42740","Task","BMI 2.0 - Cambiar a modelo en couchbase","Alfonso Conti <alfonso.conti@innocv.com>","5",,,"In Progress"
-"43238","Product Backlog Item","Hipotecas - Control de errores en tasación","Cristiam Sosa <cristiam.sosa@innocv.com>",,"2","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Committed"
-"43239","Task","Hipotecas - Añadir control de errores en tasación","Alberto García <alberto.garcia@innocv.com>","4",,,"Code Review"
-"43240","Product Backlog Item","Hipotecas - Guardar información de tasación en SF","Alfonso Conti <alfonso.conti@innocv.com>",,"3","EB133 - Plataforma Analítica Inteligente (BigData PAI)","QA"
-"43242","Product Backlog Item","Hipotecas - Diccionarios","Cristiam Sosa <cristiam.sosa@innocv.com>",,"2","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Committed"
-"43244","Task","Hipotecas - Diccionarios - Crear endpoint de descarga","Cristiam Sosa <cristiam.sosa@innocv.com>","4",,,"Code Review"
-"43803","Product Backlog Item","Hipotecas - Nota simple - Eliminar nodos bloqueantes","Alfonso Conti <alfonso.conti@innocv.com>",,"2","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Committed"
-"43821","Product Backlog Item","Hipotecas - Get nota simple",,,"2","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Removed"
-"43822","Product Backlog Item","Hipotecas - Get tasación","Alfonso Conti <alfonso.conti@innocv.com>",,"2","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Approved"
-"43826","Product Backlog Item","Hipotecas - Meter cache","Alfonso Conti <alfonso.conti@innocv.com>",,"3","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Approved"
-"43828","Product Backlog Item","BMI 2.0 - Crear modelos para extensión de la config","Alfonso Conti <alfonso.conti@innocv.com>",,"3","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Approved"
-"43830","Task","BMI 2.0 - Mergear properties con los campos obtenidos de la 'default'","Alfonso Conti <alfonso.conti@innocv.com>","4",,,"To Do"
-"43834","Product Backlog Item","TINK - Hablar con la gente de Tink para revisar los dnis con casesensitive","Alfonso Conti <alfonso.conti@innocv.com>",,"1","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Approved"
-"43835","Task","Hipotecas - Nota simple - Eliminar llamadas a modellica","Alberto García <alberto.garcia@innocv.com>","1",,,"In Progress"
-"43836","Task","Hipotecas - Nota simple - Revisar y eliminar evaluación de riesgo","Alberto García <alberto.garcia@innocv.com>","3",,,"To Do"
-"43837","Task","Hipotecas - Tasación - Añadir cajita de guradado","Alberto García <alberto.garcia@innocv.com>","3",,,"To Do"
-"43838","Product Backlog Item","Hipotecas - Tasación - Guardar datos de tasacion en SF","Cristiam Sosa <cristiam.sosa@innocv.com>",,"2","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Approved"
-"43839","Task","Hipotecas - Tasacion - Separar la obtencion de URL del TPV",,,,,"Removed"
-"43842","Task","Hipotecas - Get tasación","Cristiam Sosa <cristiam.sosa@innocv.com>","3",,,"In Progress"
-"43843","Task","Hipotecas - Meter cache con spring","Cristiam Sosa <cristiam.sosa@innocv.com>","3",,,"To Do"
-"43844","Task","Hipotecas - Guardar caché en redis","Cristiam Sosa <cristiam.sosa@innocv.com>","2",,,"To Do"
-"43846","Task","BMI 2.0 - Crear modelo para xSell y recuperar la info de couchbase","Alberto García <alberto.garcia@innocv.com>","4",,,"To Do"
-"43847","Task","BMI 2.0 - Mapear dentro del objeto configuration de usuario","Alberto García <alberto.garcia@innocv.com>","2",,,"To Do"
-"43886","Task","Hipotecas - Diccionarios - Actualizar JSON","Cristiam Sosa <cristiam.sosa@innocv.com>","2",,,"To Do"
-"43994","Product Backlog Item","TINK - Investigar adaptation a PSD2","Alfonso Conti <alfonso.conti@innocv.com>",,"3","EB133 - Plataforma Analítica Inteligente (BigData PAI)","Approved"
-"43995","Task","TINK - Investigar adaptation a PSD2","Alfonso Conti <alfonso.conti@innocv.com>","7",,,"To Do"
+﻿State,ID,Work Item Type,Title,Effort,Remaining Work,Parent
+"Committed","31102","Product Backlog Item","Traspaso a cuenta - Acción","13",,"31289"
+"To Do","42980","Task","Crear transferencia periódica - Simulación y confirmación",,"3","42981"
+"Committed","42981","Product Backlog Item","Transferencias periódicas - Crear transferencia periódica","34",,"31285"
+"To Do","42983","Task","Crear transferencia periódica - Ayuda",,"1","42981"
+"Code Review","43907","Task","Crear transferencia periódica - Intent de creación",,"3","42981"
+"To Do","43911","Task","Crear transferencia periódica - Chequear parámetro cuenta de origen",,"4","42981"
+"In Progress","43913","Task","Crear transferencia periódica - Chequear iban beneficiario",,"5","42981"
+"To Do","43915","Task","Crear transferencia periódica - Chequear frecuencia",,"1","42981"
+"To Do","43941","Task","Crear transferencia periódica - Chequear fechas de inicio y fin",,"1","42981"
+"To Do","43942","Task","Crear transferencia periódica - Validar concepto",,"1","42981"
+"To Do","43944","Task","Crear transferencia periódica - Validar importe",,"1","42981"
+"To Do","43948","Task","Crear transferencia periódica - Alta",,"3","42981"
+"Locked","43950","Task","Crear transferencia periódica - Notificación de envío",,"5","42981"
+"In Progress","43964","Task","Crear transferencia periódica - Intent de selección de producto",,"2","42981"
+"To Do","43968","Task","Crear transferencia periódica - Intent de selección de beneficiario",,"5","42981"
+"To Do","43970","Task","Crear transferencia periódica - Intent de selección de frecuencia",,"1","42981"
+"To Do","43972","Task","Crear transferencia periódica - Intents de selección de fechas de inicio y fin de periodo",,"3","42981"
+"To Do","43975","Task","Crear transferencia periódica - Intent de entrada de concepto",,"4","42981"
+"To Do","43977","Task","Crear transferencia periódica - Intent de entrada de importe",,"1","42981"
+"Done","45390","Product Backlog Item","TINK - Modificar endpoints para que apunten al API MANAGER","1",,
+"Done","45391","Task","Traspaso a cuenta - Reconocer la cuenta destino",,,"31102"
+"Done","45395","Task","Traspaso a cuenta - Crear la acción con filtros",,,"31102"
+"Done","45396","Task","Traspaso a cuenta - Hacer servicio de simulación",,,"31102"
+"Done","45398","Task","Traspaso a cuenta - Crear servicio de traspaso a cuenta",,,"31102"
+"Done","45400","Task","Traspaso a cuenta - Realizar simulación con parámetros",,,"31102"
+"Done","45401","Task","Traspaso a cuenta - Tarjeta de confirmación",,,"31102"
+"In Progress","45402","Task","Traspaso a cuenta - Realizar el traspaso",,"3","31102"
+"To Do","45408","Task","Traspaso a cuenta - Intents de conversación",,"4","31102"
+"To Do","45409","Task","Traspaso a cuenta - Intent de ayuda",,"1","31102"
+"Done","45589","Product Backlog Item","BMI 2.0 - Insertar en despliegue la config DEFAULT",,,
+"Done","45626","Product Backlog Item","Hipotecas - Tasación - Implantar timeout para el TPV","2",,
+"Done","45628","Task","Hipotecas - Tasación - Implantar timeout para el TPV - Controlar y avisar que hay un pago activo",,,"45626"
+"Done","45759","Bug","Divisas - Obtenemos siempre la misma conversión sea el día que sea","3",,
+"Code Review","45986","Bug","Error en hacer transferencia","2",,
+"Done","46162","Task","Divisas - Obtenemos siempre la misma conversión sea el día que sea",,,"45759"
+"Done","46617","Product Backlog Item","TINK - Adaptar create credential para estado AWAITING_THIRD_PARTY_APP_AUTHENTICATION","3",,
+"QA","46620","Product Backlog Item","TINK - Crear endpoint de callback","1",,
+"QA","46621","Product Backlog Item","TINK - Crear web con autopost al endpoint de callback","2",,
+"Done","46629","Product Backlog Item","Hipotecas - Enviar documento de nota simple en tasación","3",,
+"Done","46630","Task","Hipotecas - Enviar documento de nota simple en tasación",,,"46629"
+"Done","46656","Task","Arreglar error en execute y simulation",,,"45986"
+"Approved","46668","Product Backlog Item","Transferencia - Cambiar búsqueda de usuario y adaptarla a RequestAgendaUser","1",,
+"Done","46672","Task","BMI 2.0 - Insertar en despliegue la config DEFAULT",,,"45589"
+"Done","46675","Task","TINK - Diferenciar el create credential para OTHER y OPEN_BANK",,,"46617"
+"Committed","46676","Bug","Error al generar entidad dinámica de producto","8",,
+"Locked","46677","Task","Bug de entidad dinámica de producto - Investigar",,"3","46676"
+"To Do","46680","Task","Transferencias - Adaptar búsqueda en agenda",,"3","46668"
+"Done","46690","Task","TINK - Cambiar app authentication",,,"45390"
+"Done","46691","Task","TINK - Crear endpoint de callback",,,"46620"
+"Done","46692","Task","TINK - Crear web con autopost al endpoint de callback",,,"46621"
+"Done","46710","Task","Sustituir endpoint de API manager",,,"45390"
+"Done","46720","Task","TINK - Mejoras de polling",,,"46617"
+"Done","46722","Task","TINK - devolver sólo el SUPPLEMENTAL_INFORMATION",,,"46617"
+"Done","46730","Task","Exponer el HTML en una carpeta publica de la api",,,"46621"
+"QA","46734","Product Backlog Item","BMI 2.0 - Aumentar resiliencia ","2",,
+"Done","46754","Task","Actualiza libreria de seguridad",,,"46734"
+"Done","46755","Task","En la aplicación de bmi-configuration no tiene que dar error sin idSF",,,"46734"
+"Done","46805","Task","Dialogflow - Aumentar lifespan en ejecutar transferencia",,,"45986"
+"QA","46910","Product Backlog Item","Hipotecas - No permitir 2 procesos al mismo tiempo","2",,
+"Done","46919","Task","Hipotecas - No permitir 2 procesos al mismo tiempo - Comprobar si ya existe un proceso activo",,,"46910"
+"Code Review","47120","Product Backlog Item","Hipotecas - Nota simple - Gestión Documentación","3",,
+"Code Review","47121","Task","Hipotecas - Nota simple - Gestión Documentación - Documentación adicional back office",,"4","47120"
+"Code Review","47122","Task","Hipotecas - Nota simple - Gestión Documentación - Completar documentación adicional para riesgos",,"3","47120"
+"Code Review","47123","Product Backlog Item","Hipotecas - Nota simple - Añadir modellica 4","1",,
+"Code Review","47124","Task","Hipotecas - Nota simple - Añadir modellica 4 a Camunda flow",,"2","47123"
+"QA","47426","Product Backlog Item","BMI 2.0 - Incluir bloque 'accounts'","1",,
+"Code Review","47427","Task","BMI 2.0 - Incluir bloque 'accounts'",,"1","47426"
+"Locked","47613","Product Backlog Item","Hipotecas - Borrar tareas en caso de error en callback","2",,
+"To Do","47614","Task","Hipotecas - Matar tareas en caso de error en callback",,,"47613"
+"Done","47737","Product Backlog Item","Hipotecas - generar versión estable","2",,
+"Code Review","47959","Product Backlog Item","Hipotecas - Tasación - Varios cambios","2",,
+"Done","48006","Task","Hipotecas - Tasación - Subir documento",,,"47959"
+"Code Review","48011","Task","Hipotecas - Tasación - Excepción pago erróneo",,"1","47959"
+"Done","48013","Task","Hipotecas - Tasación - Property crear tasación",,,"47959"
+"Code Review","48063","Product Backlog Item","Hipotecas - Tasación - No muestra streetNumber","1",,
+"Code Review","48064","Task","Hipotecas - Tasación - No muestra streetNumber",,"3","48063"

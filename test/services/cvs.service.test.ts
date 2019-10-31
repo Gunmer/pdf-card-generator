@@ -40,13 +40,18 @@ describe('CvsService', () => {
   test.it('should have properties name in lower camel case', () => {
     const result = service.readFromFile(cvsFile)
 
-    expect(Object.keys(result[0])).to.eql(['id', 'workItemType', 'title', 'assignedTo', 'remainingWork', 'effort', 'project', 'state'])
+    expect(Object.keys(result[0])).to.eql(['state', 'id', 'workItemType', 'title', 'effort', 'remainingWork', 'parent'])
   })
 
   test.it('should have id with value', () => {
     const result = service.readFromFile(cvsFile)
 
-    expect(result[0]).to.have.property('id', '42739')
+    expect(result[0]).to.have.property('id', '31102')
   })
 
+  test.it('should return a row with tasks inside', () => {
+    const result = service.readAndProcessFile(cvsFile)
+
+    expect(result[0].tasks).not.undefined
+  })
 })
