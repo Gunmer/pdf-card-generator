@@ -1,15 +1,44 @@
-tfs-cards
-=========
-
-Generate cards from tfs
+# pdf-card-generator
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/tfs-cards.svg)](https://npmjs.org/package/tfs-cards)
-[![Downloads/week](https://img.shields.io/npm/dw/tfs-cards.svg)](https://npmjs.org/package/tfs-cards)
-[![License](https://img.shields.io/npm/l/tfs-cards.svg)](https://github.com/Gunmer/tfs-cards/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/tfs-cards.svg)](https://npmjs.org/package/pdf-card-generator)
+[![Downloads/week](https://img.shields.io/npm/dw/tfs-cards.svg)](https://npmjs.org/package/pdf-card-generator)
+[![License](https://img.shields.io/npm/l/tfs-cards.svg)](https://github.com/Gunmer/pdf-card-generator/blob/master/package.json)
 
-<!-- toc -->
-# Usage
-<!-- usage -->
-# Commands
-<!-- commands -->
+It generates cards for scrum or kanban from a csv file and a mustache template.
+
+As a result, it generates a json with the data extracted from the csv, an htm file and finally the resulting pdf.
+
+## Install
+It is necessary to have [NodeJS](https://nodejs.org/es/) installed 
+```shell script
+$ npm install -g pdf-card-generator
+$ cardGen COMMAND
+running command...
+```
+
+## Version
+
+```shell script
+$ cardGen (-v|--version|version)
+pdf-card-generator/1.0.2 darwin-x64 node-v12.7.0
+```
+
+## Help
+
+```shell script
+$ cardGen (-h|--help)
+USAGE
+  $ cardGen COMMAND
+...
+```
+
+## Use
+```shell script
+$ cardGen ~/Desktop/cards
+Scanning /Users/cristiam/Desktop/cards directory ...
+... start file generations ...
+... the file has been generated: /Users/cristiam/Desktop/cards/winterfell.pdf
+```
+
+If in the working directory we have more than one csv or mustache file, the application will ask us which file to use

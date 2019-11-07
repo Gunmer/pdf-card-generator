@@ -26,12 +26,12 @@ export class GenerateOutputFilesInteractor implements Interactor<SimpleCardConfi
       fs.mkdirSync(param.outputDir, {recursive: true})
     }
 
-    const filename = path.parse(param.template).name
+    const filename = path.parse(param.input).name
     let outputJsonFile = path.join(param.outputDir, filename + '.json')
     let outputHtmlFile = path.join(param.outputDir, filename + '.html')
     let outputPdfFile = path.join(param.outputDir, filename + '.pdf')
 
-    const cvsData = this.cvsService.readFromFile(param.input)
+    const cvsData = this.cvsService.readAndProcessFile(param.input)
     const templateData = this.factoryService.buildTemplateData(cvsData)
 
     await this.fileGeneratorService.generateJson(outputJsonFile, templateData)
