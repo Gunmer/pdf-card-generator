@@ -1,7 +1,9 @@
 import * as parse from 'csv-parse/lib/sync'
 import * as fs from 'fs'
 import {injectable} from 'inversify'
+import {CardGeneratorError} from '../business/errors/card-generator.error'
 
+import {WorkItem} from '../business/models/work-item'
 import {CvsService} from '../business/services/cvs.service'
 
 @injectable()
@@ -9,7 +11,15 @@ export class CvsParseService implements CvsService {
   readFromFile(filePath: string): object[] {
     const cvsFile = fs.readFileSync(filePath)
     return parse(cvsFile, {
-      columns: h => this.formatHeaders(h),
+      columns: h => this.parseHeaders(h),
+      skip_empty_lines: true
+    })
+  }
+
+  parseWorkItems(csvFile: string): WorkItem[] {
+    const buffer = fs.readFileSync(csvFile)
+    return parse(buffer, {
+      columns: h => this.parseHeaders(h),
       skip_empty_lines: true
     })
   }
@@ -82,8 +92,12 @@ export class CvsParseService implements CvsService {
     return bug
   }
 
-  private formatHeaders(headers: string[]) {
-    return headers.map(row => this.toLowerCamelCase(row))
+  private parseHeaders(headers: string[]) {
+    if (headers.includes('ID') && headers.includes('Work Item Type') && headers.includes('Parent')) {
+      return headers.map(row => this.toLowerCamelCase(row))
+    }
+
+    throw new CardGeneratorError(1, 'Mandatory columns [id, workItemType, parent] not found')
   }
 
   private toLowerCamelCase(header: string): string {

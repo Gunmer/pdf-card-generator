@@ -2,14 +2,14 @@ import {expect, test} from '@oclif/test'
 import 'reflect-metadata'
 
 import {BusinessTypes} from '../../src/business/business.module'
+import {CardGeneratorError} from '../../src/business/errors/card-generator.error'
+import {WorkItem} from '../../src/business/models/work-item'
 import injector from '../../src/injector'
 import {CvsParseService} from '../../src/services/cvs-parse.service'
-import fixtures from '../fixtures'
+import {Fixtures} from '../fixtures'
 
 describe('CvsService', () => {
   let service: CvsParseService
-
-  const cvsFile = fixtures.getCvsFilePath()
 
   before(() => {
     injector.snapshot()
@@ -25,33 +25,18 @@ describe('CvsService', () => {
     expect(service).not.undefined
   })
 
-  test.it('should not return undefined', () => {
-    const result = service.readFromFile(cvsFile)
+  test.it('should parse Work Items', () => {
+    const cvsFilePath = Fixtures.getCvsFilePath('RightCsv')
 
-    expect(result).not.undefined
+    const workItems = service.parseWorkItems(cvsFilePath)
+
+    expect(workItems).not.undefined
+    expect(workItems).has.lengthOf(6)
   })
 
-  test.it('should return an array', () => {
-    const result = service.readFromFile(cvsFile)
+  test.it('should throw error', () => {
+    const cvsFilePath = Fixtures.getCvsFilePath('WrongCsv')
 
-    expect(Array.isArray(result)).true
-  })
-
-  test.it('should have properties name in lower camel case', () => {
-    const result = service.readFromFile(cvsFile)
-
-    expect(Object.keys(result[0])).to.eql(['state', 'id', 'workItemType', 'title', 'effort', 'remainingWork', 'parent'])
-  })
-
-  test.it('should have id with value', () => {
-    const result = service.readFromFile(cvsFile)
-
-    expect(result[0]).to.have.property('id', '31102')
-  })
-
-  test.it('should return a row with tasks inside', () => {
-    const result = service.readAndProcessFile(cvsFile)
-
-    expect(result[0].tasks).not.undefined
+    expect(() => service.parseWorkItems(cvsFilePath)).to.throw(CardGeneratorError, 'Mandatory columns [id, workItemType, parent] not found')
   })
 })
