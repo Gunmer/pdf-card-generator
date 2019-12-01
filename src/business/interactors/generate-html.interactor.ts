@@ -7,7 +7,7 @@ import {JsonService} from '../services/json.service'
 import {Interactor} from './interactor'
 
 @injectable()
-export class GenerateHtmlInteractor implements Interactor<GenerateHtmlInteractorParam, string> {
+export class GenerateHtmlInteractor implements Interactor<GenerateHtmlParam, string> {
   constructor(
     @inject('JsonService')
     private readonly jsonService: JsonService,
@@ -16,7 +16,7 @@ export class GenerateHtmlInteractor implements Interactor<GenerateHtmlInteractor
   ) {
   }
 
-  async execute(param: GenerateHtmlInteractorParam): Promise<string> {
+  async execute(param: GenerateHtmlParam): Promise<string> {
     const jsonData = this.jsonService.readFile(param.jsonFile)
     const htmlFile = param.jsonFile.replace('.json', '.html')
 
@@ -25,7 +25,7 @@ export class GenerateHtmlInteractor implements Interactor<GenerateHtmlInteractor
 
 }
 
-interface GenerateHtmlInteractorParam {
+interface GenerateHtmlParam {
   jsonFile: string,
   templateFile: string,
 }
