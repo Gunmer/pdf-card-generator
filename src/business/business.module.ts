@@ -1,16 +1,13 @@
 import {ContainerModule} from 'inversify'
 
 import {FindFileInteractor} from './interactors/find-file.interactor'
-
-export const BusinessTypes = {
-  CvsService: 'CvsService',
-  FileGeneratorService: 'FileGeneratorService',
-  FactoryService: 'FactoryService',
-  JsonService: 'JsonService',
-  HtmlService: 'HtmlService',
-  PdfService: 'PdfService',
-}
+import {GenerateHtmlInteractor} from './interactors/generate-html.interactor'
+import {GenerateJsonInteractor} from './interactors/generate-json.interactor'
+import {GeneratePdfInteractor} from './interactors/generate-pdf.interactor'
 
 export const businessModule = new ContainerModule(bind => {
   bind(FindFileInteractor).toSelf()
+  bind(GenerateJsonInteractor).toSelf()
+  bind(GenerateHtmlInteractor).toSelf()
+  bind(GeneratePdfInteractor).toSelf()
 })

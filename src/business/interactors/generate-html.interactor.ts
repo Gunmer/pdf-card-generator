@@ -1,6 +1,6 @@
 import {inject, injectable} from 'inversify'
+import 'reflect-metadata'
 
-import {BusinessTypes} from '../business.module'
 import {HtmlService} from '../services/html.service'
 import {JsonService} from '../services/json.service'
 
@@ -9,9 +9,9 @@ import {Interactor} from './interactor'
 @injectable()
 export class GenerateHtmlInteractor implements Interactor<GenerateHtmlInteractorParam, string> {
   constructor(
-    @inject(BusinessTypes.JsonService)
+    @inject('JsonService')
     private readonly jsonService: JsonService,
-    @inject(BusinessTypes.HtmlService)
+    @inject('HtmlService')
     private readonly htmlService: HtmlService,
   ) {
   }

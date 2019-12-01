@@ -7,17 +7,12 @@ import {Interactor} from './interactor'
 
 @injectable()
 export class FindFileInteractor implements Interactor<FindFileParam, string[]> {
-  execute(param: FindFileParam): Promise<string[]> {
-    return new Promise(resolve => {
-      const files = fs.readdirSync(param.workDir)
-        .map(file => path.parse(file))
-        .filter(file => file.ext === param.ext)
-        .map(file => file.base)
-
-      resolve(files)
-    })
+  async execute(param: FindFileParam): Promise<string[]> {
+    return fs.readdirSync(param.workDir)
+      .map(file => path.parse(file))
+      .filter(file => file.ext === param.ext)
+      .map(file => file.base)
   }
-
 }
 
 export interface FindFileParam {

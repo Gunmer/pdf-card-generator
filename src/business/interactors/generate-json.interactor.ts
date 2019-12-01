@@ -1,6 +1,5 @@
 import {inject, injectable} from 'inversify'
 
-import {BusinessTypes} from '../business.module'
 import {CardGeneratorError} from '../errors/card-generator.error'
 import {CsvService} from '../services/csv-service'
 import {JsonService} from '../services/json.service'
@@ -10,9 +9,9 @@ import {Interactor} from './interactor'
 @injectable()
 export class GenerateJsonInteractor implements Interactor<string, string> {
   constructor(
-    @inject(BusinessTypes.CvsService)
+    @inject('CsvService')
     private readonly cvsService: CsvService,
-    @inject(BusinessTypes.JsonService)
+    @inject('JsonService')
     private readonly jsonService: JsonService,
   ) {
   }

@@ -1,6 +1,5 @@
 import {inject, injectable} from 'inversify'
 
-import {BusinessTypes} from '../business.module'
 import {PdfService} from '../services/pdf.service'
 
 import {Interactor} from './interactor'
@@ -8,7 +7,7 @@ import {Interactor} from './interactor'
 @injectable()
 export class GeneratePdfInteractor implements Interactor<string, string> {
   constructor(
-    @inject(BusinessTypes.PdfService)
+    @inject('PdfService')
     private readonly pdfService: PdfService,
   ) {
   }

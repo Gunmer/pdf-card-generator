@@ -1,7 +1,0 @@
-﻿State,ID,Work Item Type,Title,Effort,Remaining Work,Parent,Project
-"Approved","109","Bug","BMI - Halcash no admite informar móviles que comiencen por 7",,,,
-"Removed","129","Product Backlog Item","CAJEROS - Cambiar nombre entidad bancaria",,,,
-"Removed","275","Feature","Migración de Interfaces de ADAIA a DITWUIT",,,,
-"Done","6958","Release","EVOCO - Entrega cliente cambios certificado logalty",,,,
-"To Do","7199","Task","PDO-19",,"3","7198",
-"New","13149","Epic","AMV - Autorización de Valoraciones Masivas",,,,"TINSA026 - Autorización mavisa valoraciones"
