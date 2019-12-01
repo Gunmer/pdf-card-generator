@@ -6,6 +6,9 @@ export const BusinessTypes = {
   CvsService: 'CvsService',
   FileGeneratorService: 'FileGeneratorService',
   FactoryService: 'FactoryService',
+  JsonService: 'JsonService',
+  HtmlService: 'HtmlService',
+  PdfService: 'PdfService',
 }
 
 export const businessModule = new ContainerModule(bind => {

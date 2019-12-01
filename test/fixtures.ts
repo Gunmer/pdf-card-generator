@@ -1,7 +1,5 @@
 import * as path from 'path'
 
-import {TemplateData} from '../src/business/models/template-data'
-
 // tslint:disable-next-line:no-unnecessary-class
 export class Fixtures {
   static getSimpleCvsData() {
@@ -19,14 +17,6 @@ export class Fixtures {
         image: 'https://picsum.photos/300'
       },
     ]
-  }
-
-  static getTemplateData(rows?: object[]) {
-    if (!rows) {
-      rows = this.getSimpleCvsData()
-    }
-
-    return new TemplateData(rows)
   }
 
   static getCvsFilePath(fileName = 'demo') {
