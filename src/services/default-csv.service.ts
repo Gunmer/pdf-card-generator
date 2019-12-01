@@ -2,11 +2,11 @@ import * as csvParse from 'csv-parse/lib/sync'
 import * as fs from 'fs'
 import {injectable} from 'inversify'
 
-import {CvsService} from '../business/services/cvs.service'
+import {CsvService} from '../business/services/csv-service'
 
 @injectable()
-export class CvsParseService implements CvsService {
-  readFromFile(filePath: string): object[] {
+export class DefaultCsvService implements CsvService {
+  async readFromFile(filePath: string): Promise<object[]> {
     const cvsFile = fs.readFileSync(filePath)
     return csvParse(cvsFile, {
       columns: headers => headers.map((h: string) => this.toLowerCamelCase(h)),

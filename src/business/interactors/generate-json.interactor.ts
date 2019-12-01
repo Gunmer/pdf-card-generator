@@ -2,7 +2,7 @@ import {inject, injectable} from 'inversify'
 
 import {BusinessTypes} from '../business.module'
 import {CardGeneratorError} from '../errors/card-generator.error'
-import {CvsService} from '../services/cvs.service'
+import {CsvService} from '../services/csv-service'
 import {JsonService} from '../services/json.service'
 
 import {Interactor} from './interactor'
@@ -11,14 +11,14 @@ import {Interactor} from './interactor'
 export class GenerateJsonInteractor implements Interactor<string, string> {
   constructor(
     @inject(BusinessTypes.CvsService)
-    private readonly cvsService: CvsService,
+    private readonly cvsService: CsvService,
     @inject(BusinessTypes.JsonService)
     private readonly jsonService: JsonService,
   ) {
   }
 
   async execute(csvFile: string): Promise<string> {
-    const csvData = this.cvsService.readFromFile(csvFile)
+    const csvData = await this.cvsService.readFromFile(csvFile)
 
     if (!csvData.every(d => this.hasMandatoryFields(d))) {
       throw new CardGeneratorError(1, 'Mandatory columns [id, workItemType, parent] not found')
