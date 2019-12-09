@@ -1,15 +1,19 @@
 import {ContainerModule} from 'inversify'
 
+import {CheckConfigInteractor} from './interactors/check-config.interactor'
+import {CopyResourceInteractor} from './interactors/copy-resource.interactor'
+import {CreateConfigInteractor} from './interactors/create-config.interactor'
 import {FindFileInteractor} from './interactors/find-file.interactor'
-import {GenerateOutputFilesInteractor} from './interactors/generate-output-files.interactor'
-
-export const BusinessTypes = {
-  CvsService: 'CvsService',
-  FileGeneratorService: 'FileGeneratorService',
-  FactoryService: 'FactoryService',
-}
+import {GenerateHtmlInteractor} from './interactors/generate-html.interactor'
+import {GenerateJsonInteractor} from './interactors/generate-json.interactor'
+import {GeneratePdfInteractor} from './interactors/generate-pdf.interactor'
 
 export const businessModule = new ContainerModule(bind => {
-  bind(GenerateOutputFilesInteractor).toSelf()
   bind(FindFileInteractor).toSelf()
+  bind(GenerateJsonInteractor).toSelf()
+  bind(GenerateHtmlInteractor).toSelf()
+  bind(GeneratePdfInteractor).toSelf()
+  bind(CreateConfigInteractor).toSelf()
+  bind(CopyResourceInteractor).toSelf()
+  bind(CheckConfigInteractor).toSelf()
 })

@@ -1,57 +1,39 @@
 import {expect, test} from '@oclif/test'
 import 'reflect-metadata'
 
-import {BusinessTypes} from '../../src/business/business.module'
-import injector from '../../src/injector'
-import {CvsParseService} from '../../src/services/cvs-parse.service'
-import fixtures from '../fixtures'
+import {CsvService} from '../../src/business/services/csv-service'
+import {DefaultCsvService} from '../../src/services/default-csv.service'
+import {Fixtures} from '../fixtures'
 
 describe('CvsService', () => {
-  let service: CvsParseService
-
-  const cvsFile = fixtures.getCvsFilePath()
+  let service: CsvService
 
   before(() => {
-    injector.snapshot()
-
-    service = injector.get<CvsParseService>(BusinessTypes.CvsService)
-  })
-
-  after(() => {
-    injector.restore()
+    service = new DefaultCsvService()
   })
 
   test.it('should be defined', () => {
     expect(service).not.undefined
   })
 
-  test.it('should not return undefined', () => {
-    const result = service.readFromFile(cvsFile)
+  test.it('should be return data array', async () => {
+    const csvFile = Fixtures.getResources('demo.csv')
 
-    expect(result).not.undefined
+    const csvData = await service.readFromFile(csvFile)
+
+    expect(csvData).not.undefined
+    expect(csvData).lengthOf(2)
   })
 
-  test.it('should return an array', () => {
-    const result = service.readFromFile(cvsFile)
+  test.it('should be contain id, workItemType and parent property', async () => {
+    const csvFile = Fixtures.getResources('demo.csv')
 
-    expect(Array.isArray(result)).true
+    const csvData = await service.readFromFile(csvFile)
+    const properties = Object.keys(csvData[0])
+
+    expect(properties).contain('id')
+    expect(properties).contain('workItemType')
+    expect(properties).contain('parent')
   })
 
-  test.it('should have properties name in lower camel case', () => {
-    const result = service.readFromFile(cvsFile)
-
-    expect(Object.keys(result[0])).to.eql(['state', 'id', 'workItemType', 'title', 'effort', 'remainingWork', 'parent'])
-  })
-
-  test.it('should have id with value', () => {
-    const result = service.readFromFile(cvsFile)
-
-    expect(result[0]).to.have.property('id', '31102')
-  })
-
-  test.it('should return a row with tasks inside', () => {
-    const result = service.readAndProcessFile(cvsFile)
-
-    expect(result[0].tasks).not.undefined
-  })
 })
