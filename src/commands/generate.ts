@@ -3,6 +3,7 @@ import * as inquirer from 'inquirer'
 import * as path from 'path'
 
 import {CardGeneratorError} from '../business/errors/card-generator.error'
+import {CheckConfigInteractor} from '../business/interactors/check-config.interactor'
 import {FindFileInteractor} from '../business/interactors/find-file.interactor'
 import {GenerateHtmlInteractor} from '../business/interactors/generate-html.interactor'
 import {GenerateJsonInteractor} from '../business/interactors/generate-json.interactor'
@@ -20,6 +21,7 @@ export class Generate extends Command {
 
   static aliases = ['g', 'gen']
 
+  private readonly checkConfigInteractor: CheckConfigInteractor = injector.get(CheckConfigInteractor)
   private readonly findFileInteractor: FindFileInteractor = injector.get(FindFileInteractor)
   private readonly generateJsonInteractor: GenerateJsonInteractor = injector.get(GenerateJsonInteractor)
   private readonly generateHtmlInteractor: GenerateHtmlInteractor = injector.get(GenerateHtmlInteractor)
@@ -28,12 +30,17 @@ export class Generate extends Command {
   async run() {
     const input = this.parse(Generate)
 
-    const csvFile = await this.selectFile(input.args.workDir, '.csv', 'Choose a csv file')
-    const templateFile = await this.selectFile(input.args.workDir, '.mustache', 'Choose a template file')
+    const config = await this.checkConfigInteractor.execute()
+    if (!config) {
+      throw new CardGeneratorError(3, 'Need initialize work directory')
+    }
 
-    const jsonFile = await this.generateJsonInteractor.execute(csvFile)
+    const csvFile = await this.selectFile(input.args.workDir, '.csv', 'Choose a csv file')
+    const templateFile = await this.selectFile(config.resFolder.template, '.mustache', 'Choose a template file')
+
+    const jsonFile = await this.generateJsonInteractor.execute({csvFile, config})
     const htmlFile = await this.generateHtmlInteractor.execute({jsonFile, templateFile})
-    const pdfFile = await this.generatePdfInteractor.execute(htmlFile)
+    const pdfFile = await this.generatePdfInteractor.execute({htmlFile, config})
 
     this.log(`Pdf file generated: ${pdfFile}`)
   }

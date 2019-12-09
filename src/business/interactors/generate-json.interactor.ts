@@ -1,13 +1,15 @@
 import {inject, injectable} from 'inversify'
+import * as path from 'path'
 
 import {CardGeneratorError} from '../errors/card-generator.error'
+import {Configuration} from '../model/configuration'
 import {CsvService} from '../services/csv-service'
 import {JsonService} from '../services/json.service'
 
 import {Interactor} from './interactor'
 
 @injectable()
-export class GenerateJsonInteractor implements Interactor<string, string> {
+export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, string> {
   constructor(
     @inject('CsvService')
     private readonly cvsService: CsvService,
@@ -16,8 +18,8 @@ export class GenerateJsonInteractor implements Interactor<string, string> {
   ) {
   }
 
-  async execute(csvFile: string): Promise<string> {
-    const csvData = await this.cvsService.readFromFile(csvFile)
+  async execute(param: GenerateJsonParam): Promise<string> {
+    const csvData = await this.cvsService.readFromFile(param.csvFile)
 
     if (!csvData.every(d => this.hasMandatoryFields(d))) {
       throw new CardGeneratorError(1, 'Mandatory columns [id, workItemType, parent] not found')
@@ -47,7 +49,7 @@ export class GenerateJsonInteractor implements Interactor<string, string> {
 
     rows.push(...tasks)
 
-    const jsonFile = csvFile.replace('.csv', '.json')
+    const jsonFile = path.join(param.config.tempFolder, path.parse(param.csvFile).name, '.json')
 
     return this.jsonService.writeFile(jsonFile, {rows})
   }
@@ -99,4 +101,9 @@ export class GenerateJsonInteractor implements Interactor<string, string> {
     return bug
   }
 
+}
+
+interface GenerateJsonParam {
+  csvFile: string,
+  config: Configuration,
 }

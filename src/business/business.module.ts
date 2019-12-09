@@ -1,5 +1,6 @@
 import {ContainerModule} from 'inversify'
 
+import {CheckConfigInteractor} from './interactors/check-config.interactor'
 import {CopyResourceInteractor} from './interactors/copy-resource.interactor'
 import {CreateConfigInteractor} from './interactors/create-config.interactor'
 import {FindFileInteractor} from './interactors/find-file.interactor'
@@ -14,4 +15,5 @@ export const businessModule = new ContainerModule(bind => {
   bind(GeneratePdfInteractor).toSelf()
   bind(CreateConfigInteractor).toSelf()
   bind(CopyResourceInteractor).toSelf()
+  bind(CheckConfigInteractor).toSelf()
 })
