@@ -1,9 +1,9 @@
 # pdf-card-generator
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/tfs-cards.svg)](https://npmjs.org/package/pdf-card-generator)
-[![Downloads/week](https://img.shields.io/npm/dw/tfs-cards.svg)](https://npmjs.org/package/pdf-card-generator)
-[![License](https://img.shields.io/npm/l/tfs-cards.svg)](https://github.com/Gunmer/pdf-card-generator/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/pdf-card-generator.svg)](https://npmjs.org/package/pdf-card-generator)
+[![Downloads/week](https://img.shields.io/npm/dw/pdf-card-generator.svg)](https://npmjs.org/package/pdf-card-generator)
+[![License](https://img.shields.io/npm/l/pdf-card-generator.svg)](https://github.com/Gunmer/pdf-card-generator/blob/master/package.json)
 
 It generates cards for scrum or kanban from a csv file and a mustache template.
 
