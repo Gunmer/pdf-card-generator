@@ -5,8 +5,10 @@ import * as path from 'path'
 import {Configuration} from '../model/configuration'
 import {JsonService} from '../services/json.service'
 
+import {Interactor} from './interactor'
+
 @injectable()
-export class CreateConfigInteractor {
+export class CreateConfigInteractor implements Interactor<string, string> {
   constructor(
     @inject('JsonService')
     private readonly jsonService: JsonService,
@@ -46,10 +48,8 @@ export class CreateConfigInteractor {
       fs.mkdirSync(config.resFolder.image)
     }
 
-    const res = path.join(__dirname, '../../..', 'resource')
-
-    fs.copyFileSync(path.join(res, 'template.mustache'), path.join(config.resFolder.template, 'template.mustache'))
-
     await this.jsonService.writeFile(configFile, config)
+
+    return configFile
   }
 }

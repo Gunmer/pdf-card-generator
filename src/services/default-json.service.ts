@@ -1,6 +1,8 @@
 import * as fs from 'fs'
 import {injectable} from 'inversify'
+import * as path from 'path'
 
+import {Configuration} from '../business/model/configuration'
 import {JsonService} from '../business/services/json.service'
 
 @injectable()
@@ -17,4 +19,8 @@ export class DefaultJsonService implements JsonService {
     return JSON.parse(jsonData)
   }
 
+  async readConfig(): Promise<Configuration> {
+    const configFile = path.join(process.cwd(), 'configuration.json')
+    return this.readFile(configFile)
+  }
 }

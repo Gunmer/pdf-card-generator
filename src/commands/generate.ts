@@ -10,7 +10,7 @@ import {GeneratePdfInteractor} from '../business/interactors/generate-pdf.intera
 import injector from '../injector'
 
 export class Generate extends Command {
-  static description = 'describe the command here'
+  static description = 'generate a pdf file to print'
 
   static flags = {
     help: flags.help({char: 'h'}),
