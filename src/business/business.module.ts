@@ -1,5 +1,6 @@
 import {ContainerModule} from 'inversify'
 
+import {CreateConfigInteractor} from './interactors/create-config.interactor'
 import {FindFileInteractor} from './interactors/find-file.interactor'
 import {GenerateHtmlInteractor} from './interactors/generate-html.interactor'
 import {GenerateJsonInteractor} from './interactors/generate-json.interactor'
@@ -10,4 +11,5 @@ export const businessModule = new ContainerModule(bind => {
   bind(GenerateJsonInteractor).toSelf()
   bind(GenerateHtmlInteractor).toSelf()
   bind(GeneratePdfInteractor).toSelf()
+  bind(CreateConfigInteractor).toSelf()
 })

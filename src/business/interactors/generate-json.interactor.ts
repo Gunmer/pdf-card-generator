@@ -32,7 +32,14 @@ export class GenerateJsonInteractor implements Interactor<string, string> {
     rows.push(...bugs)
 
     rows = rows.map((data: any) => {
-      data.tasks = tasks.filter((t: any) => t.parent === data.id)
+      data.tasks = tasks
+        .filter((t: any) => t.parent === data.id)
+        .map((t: any) => {
+          t.parentId = data.id
+          t.parent = data
+
+          return t
+        })
       data.taskNumber = data.tasks.length
 
       return data
@@ -58,7 +65,6 @@ export class GenerateJsonInteractor implements Interactor<string, string> {
     pbi.textColor = 'text-primary'
     pbi.borderColor = 'border-primary'
     pbi.bgColor = 'bg-primary'
-    pbi.iconClass = 'fas fa-folder-open'
     pbi.isPBI = true
     pbi.isTask = false
     pbi.isBug = false
@@ -73,7 +79,6 @@ export class GenerateJsonInteractor implements Interactor<string, string> {
     task.textColor = 'text-warning'
     task.borderColor = 'border-warning'
     task.bgColor = 'bg-warning'
-    task.iconClass = 'fas fa-file'
     task.isPBI = false
     task.isTask = true
     task.isBug = false
@@ -88,7 +93,6 @@ export class GenerateJsonInteractor implements Interactor<string, string> {
     bug.textColor = 'text-danger'
     bug.borderColor = 'border-danger'
     bug.bgColor = 'bg-danger'
-    bug.iconClass = 'fas fa-bug'
     bug.isPBI = false
     bug.isTask = false
     bug.isBug = true

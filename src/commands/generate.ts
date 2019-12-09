@@ -16,9 +16,9 @@ export class Generate extends Command {
     help: flags.help({char: 'h'}),
   }
 
-  static args = [{name: 'workSpace'}]
+  static args = [{name: 'workDir', required: false, default: process.cwd()}]
 
-  static aliases = ['g']
+  static aliases = ['g', 'gen']
 
   private readonly findFileInteractor: FindFileInteractor = injector.get(FindFileInteractor)
   private readonly generateJsonInteractor: GenerateJsonInteractor = injector.get(GenerateJsonInteractor)
@@ -28,8 +28,8 @@ export class Generate extends Command {
   async run() {
     const input = this.parse(Generate)
 
-    const csvFile = await this.selectFile(input.args.workSpace, '.csv', 'Choose a csv file')
-    const templateFile = await this.selectFile(input.args.workSpace, '.mustache', 'Choose a template file')
+    const csvFile = await this.selectFile(input.args.workDir, '.csv', 'Choose a csv file')
+    const templateFile = await this.selectFile(input.args.workDir, '.mustache', 'Choose a template file')
 
     const jsonFile = await this.generateJsonInteractor.execute(csvFile)
     const htmlFile = await this.generateHtmlInteractor.execute({jsonFile, templateFile})

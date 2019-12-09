@@ -1,0 +1,60 @@
+<html lang="ES">
+<header>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            width: 210mm;
+            height: 297mm;
+        }
+    </style>
+</header>
+<body>
+{{#rows}}
+    <div class="w-50 h-25 p-1 float-left border {{borderColor}}">
+        <div class="w-100 h-25 text-center p-3 border {{borderColor}} {{bgColor}}">
+            <h5>{{workItemType}}: {{id}}</h5>
+        </div>
+        <div class="w-100 h-50 p-3 border {{borderColor}}">
+            <p>{{title}}</p>
+        </div>
+        <div class="w-100 h-25">git p
+            <div class="h-100 w-25 float-left p-3 border {{borderColor}}">
+              {{#isPBI}}
+                  <small>Effort:</small><br/>
+                {{effort}}
+              {{/isPBI}}
+              {{#isTask}}
+                  <small>Remaining Work:</small>
+                {{remainingWork}}
+              {{/isTask}}
+            </div>
+            <div class="h-100 w-25 float-left p-3 border {{borderColor}}">
+              {{#isPBI}}
+                  <small>Tasks:</small><br/>
+                {{taskNumber}}
+              {{/isPBI}}
+              {{#isTask}}
+                  <small>Real Time:</small><br/>
+              {{/isTask}}
+            </div>
+            <div class="h-100 w-50 float-left text-center p-3 border {{borderColor}}">
+              {{#isPBI}}
+                  <small>{{project}}</small>
+              {{/isPBI}}
+              {{#isTask}}
+                  <small>Parent:</small><br/>
+                  <h4>{{parent}}</h4>
+              {{/isTask}}
+            </div>
+        </div>
+    </div>
+{{/rows}}
+</body>
+</html>
