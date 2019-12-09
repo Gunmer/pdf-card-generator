@@ -1,7 +1,7 @@
 {
   "name": "pdf-card-generator",
   "description": "Generate cards from tfs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Cristiam Sosa @Gunmer",
   "bin": {
     "cardGen": "./bin/run"
