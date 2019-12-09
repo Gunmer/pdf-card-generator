@@ -1,5 +1,6 @@
 import {inject, injectable} from 'inversify'
 import * as path from 'path'
+import 'reflect-metadata'
 
 import {Configuration} from '../model/configuration'
 import {PdfService} from '../services/pdf.service'
@@ -15,7 +16,7 @@ export class GeneratePdfInteractor implements Interactor<GeneratePdfParam, strin
   }
 
   async execute(param: GeneratePdfParam): Promise<string> {
-    const pdfFile = path.join(param.config.rootFolder, path.parse(param.htmlFile).name, '.pdf')
+    const pdfFile = path.join(param.config.rootFolder, path.parse(param.htmlFile).name + '.pdf')
     return this.pdfService.generateFromHtml(param.htmlFile, pdfFile)
   }
 

@@ -1,5 +1,6 @@
 import {inject, injectable} from 'inversify'
 import * as path from 'path'
+import 'reflect-metadata'
 
 import {CardGeneratorError} from '../errors/card-generator.error'
 import {Configuration} from '../model/configuration'
@@ -25,6 +26,7 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
       throw new CardGeneratorError(1, 'Mandatory columns [id, workItemType, parent] not found')
     }
 
+    let release = csvData.filter(this.filterRelease).map(this.completeRelease)
     const PBIs = csvData.filter(this.filterPBIs).map(this.completePBI)
     const tasks = csvData.filter(this.filterTasks).map(this.completeTask)
     const bugs = csvData.filter(this.filterBugs).map(this.completeBug)
@@ -33,12 +35,23 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     rows.push(...PBIs)
     rows.push(...bugs)
 
+    release = release.map((release: any) => {
+      release.child = rows
+        .filter((r: any) => r.parent === release.id)
+        .map((r: any) => {
+          r.parentId = release.id
+          r.parent = {...release}
+
+          return r
+        })
+    })
+
     rows = rows.map((data: any) => {
       data.tasks = tasks
         .filter((t: any) => t.parent === data.id)
         .map((t: any) => {
           t.parentId = data.id
-          t.parent = data
+          t.parent = {...data}
 
           return t
         })
@@ -47,9 +60,10 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
       return data
     })
 
+    rows.push(...release)
     rows.push(...tasks)
 
-    const jsonFile = path.join(param.config.tempFolder, path.parse(param.csvFile).name, '.json')
+    const jsonFile = path.join(param.config.tempFolder, path.parse(param.csvFile).name + '.json')
 
     return this.jsonService.writeFile(jsonFile, {rows})
   }
@@ -70,6 +84,7 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     pbi.isPBI = true
     pbi.isTask = false
     pbi.isBug = false
+    pbi.isRelease = false
     return pbi
   }
 
@@ -84,6 +99,7 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     task.isPBI = false
     task.isTask = true
     task.isBug = false
+    task.isRelease = false
     return task
   }
 
@@ -98,7 +114,23 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     bug.isPBI = false
     bug.isTask = false
     bug.isBug = true
+    bug.isRelease = false
     return bug
+  }
+
+  private filterRelease(release: any) {
+    return release.workItemType === 'Release'
+  }
+
+  private completeRelease(release: any) {
+    release.textColor = 'text-success'
+    release.borderColor = 'border-success'
+    release.bgColor = 'bg-success'
+    release.isPBI = false
+    release.isTask = false
+    release.isBug = false
+    release.isRelease = true
+    return release
   }
 
 }

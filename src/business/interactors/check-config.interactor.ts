@@ -1,4 +1,5 @@
 import {inject, injectable} from 'inversify'
+import 'reflect-metadata'
 
 import {Configuration} from '../model/configuration'
 import {JsonService} from '../services/json.service'

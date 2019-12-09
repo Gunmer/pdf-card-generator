@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import {inject, injectable} from 'inversify'
 import * as path from 'path'
+import 'reflect-metadata'
 
 import {JsonService} from '../services/json.service'
 
