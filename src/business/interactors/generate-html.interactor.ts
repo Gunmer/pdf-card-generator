@@ -17,7 +17,7 @@ export class GenerateHtmlInteractor implements Interactor<GenerateHtmlParam, str
   }
 
   async execute(param: GenerateHtmlParam): Promise<string> {
-    const jsonData = this.jsonService.readFile(param.jsonFile)
+    const jsonData = await this.jsonService.readFile(param.jsonFile)
     const htmlFile = param.jsonFile.replace('.json', '.html')
 
     return this.htmlService.generateFromTemplate(param.templateFile, htmlFile, jsonData)

@@ -19,8 +19,12 @@ export class DefaultJsonService implements JsonService {
     return JSON.parse(jsonData)
   }
 
-  async readConfig(): Promise<Configuration> {
-    const configFile = path.join(process.cwd(), 'configuration.json')
+  async writeConfig(workDir: string, config: Configuration): Promise<string> {
+    return this.writeFile(path.join(workDir, 'configuration.json'), config)
+  }
+
+  async readConfig(workDir: string): Promise<Configuration> {
+    const configFile = path.join(workDir, 'configuration.json')
     return this.readFile(configFile)
   }
 }

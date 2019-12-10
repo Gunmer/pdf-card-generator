@@ -17,7 +17,6 @@ export class CreateConfigInteractor implements Interactor<string, string> {
   }
 
   async execute(workDir: string) {
-    const configFile = path.join(workDir, 'configuration.json')
     const config: Configuration = {
       rootFolder: workDir,
       tempFolder: path.join(workDir, 'tmp'),
@@ -49,8 +48,6 @@ export class CreateConfigInteractor implements Interactor<string, string> {
       fs.mkdirSync(config.resFolder.image)
     }
 
-    await this.jsonService.writeFile(configFile, config)
-
-    return configFile
+    return this.jsonService.writeConfig(workDir, config)
   }
 }

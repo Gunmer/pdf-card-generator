@@ -25,7 +25,7 @@ export default class Initialize extends Command {
     const configFile = await this.createConfigInteractor.execute(input.args.workDir)
     this.log(`Created config file: ${configFile}`)
 
-    await this.copyResourceInteractor.execute()
+    await this.copyResourceInteractor.execute(input.args.workDir)
     this.log('Copy resources')
   }
 }

@@ -8,15 +8,15 @@ import {JsonService} from '../services/json.service'
 import {Interactor} from './interactor'
 
 @injectable()
-export class CopyResourceInteractor implements Interactor<void, void> {
+export class CopyResourceInteractor implements Interactor<string, void> {
   constructor(
     @inject('JsonService')
     private readonly jsonService: JsonService,
   ) {
   }
 
-  async execute(): Promise<void> {
-    const config = await this.jsonService.readConfig()
+  async execute(workDir: string): Promise<void> {
+    const config = await this.jsonService.readConfig(workDir)
 
     const res = path.join(__dirname, '../../..', 'resource')
 

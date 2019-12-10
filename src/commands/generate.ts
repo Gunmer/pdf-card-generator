@@ -30,10 +30,7 @@ export class Generate extends Command {
   async run() {
     const input = this.parse(Generate)
 
-    const config = await this.checkConfigInteractor.execute()
-    if (!config) {
-      throw new CardGeneratorError(3, 'Need initialize work directory')
-    }
+    const config = await this.checkConfigInteractor.execute(input.args.workDir)
 
     const csvFile = await this.selectFile(input.args.workDir, '.csv', 'Choose a csv file')
     const templateFile = await this.selectFile(config.resFolder.template, '.mustache', 'Choose a template file')
