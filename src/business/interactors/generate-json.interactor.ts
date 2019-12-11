@@ -81,6 +81,7 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     pbi.textColor = 'text-primary'
     pbi.borderColor = 'border-primary'
     pbi.bgColor = 'bg-primary'
+    pbi.contrastText = 'text-white'
     pbi.isPBI = true
     pbi.isTask = false
     pbi.isBug = false
@@ -96,6 +97,7 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     task.textColor = 'text-warning'
     task.borderColor = 'border-warning'
     task.bgColor = 'bg-warning'
+    task.contrastText = 'text-dark'
     task.isPBI = false
     task.isTask = true
     task.isBug = false
@@ -111,6 +113,7 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     bug.textColor = 'text-danger'
     bug.borderColor = 'border-danger'
     bug.bgColor = 'bg-danger'
+    bug.contrastText = 'text-white'
     bug.isPBI = false
     bug.isTask = false
     bug.isBug = true
@@ -126,6 +129,7 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     release.textColor = 'text-success'
     release.borderColor = 'border-success'
     release.bgColor = 'bg-success'
+    release.contrastText = 'text-white'
     release.isPBI = false
     release.isTask = false
     release.isBug = false

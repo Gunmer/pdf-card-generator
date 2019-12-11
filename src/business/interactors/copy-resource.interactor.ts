@@ -20,7 +20,8 @@ export class CopyResourceInteractor implements Interactor<string, void> {
 
     const res = path.join(__dirname, '../../..', 'resource')
 
-    fs.copyFileSync(path.join(res, 'template.mustache'), path.join(config.resFolder.template, 'template.mustache'))
+    fs.copyFileSync(path.join(res, 'default.mustache'), path.join(config.resFolder.template, 'default.mustache'))
+    fs.copyFileSync(path.join(res, 'base.css'), path.join(config.resFolder.style, 'base.css'))
   }
 
 }

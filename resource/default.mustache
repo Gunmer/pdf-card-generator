@@ -3,29 +3,19 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        @page {
-            size: A4;
-            margin: 0;
-        }
-
-        body {
-            width: 210mm;
-            height: 297mm;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../tmp/resource/style/base.css">
 </header>
 <body>
 {{#rows}}
     <div class="w-50 h-25 p-1 float-left border {{borderColor}}">
-        <div class="w-100 h-25 text-center p-3 border {{borderColor}} {{bgColor}}">
-            <h5>{{workItemType}}: {{id}}</h5>
+        <div class="w-100 h-25 text-center p-3 border {{borderColor}} {{borderColor}} {{bgColor}}">
+            <h5 class="align-middle font-weight-bolder {{contrastText}}">{{workItemType}}: {{id}}</h5>
         </div>
-        <div class="w-100 h-50 p-3 border {{borderColor}}">
-            <p>{{title}}</p>
+        <div class="w-100 h-50 p-3 border border-width {{borderColor}}">
+            <h4>{{title}}</h4>
         </div>
-        <div class="w-100 h-25">git p
-            <div class="h-100 w-25 float-left p-3 border {{borderColor}}">
+        <div class="w-100 h-25">
+            <div class="h-100 w-25 float-left p-1 border border-width {{borderColor}}">
               {{#isPBI}}
                   <small>Effort:</small><br/>
                 {{effort}}
@@ -35,7 +25,7 @@
                 {{remainingWork}}
               {{/isTask}}
             </div>
-            <div class="h-100 w-25 float-left p-3 border {{borderColor}}">
+            <div class="h-100 w-25 float-left p-1 border border-width {{borderColor}}">
               {{#isPBI}}
                   <small>Tasks:</small><br/>
                 {{taskNumber}}
@@ -44,10 +34,13 @@
                   <small>Real Time:</small><br/>
               {{/isTask}}
             </div>
-            <div class="h-100 w-50 float-left text-center p-3 border {{borderColor}}">
+            <div class="h-100 w-50 float-left text-center border border-width {{borderColor}}">
               {{#isPBI}}
-                  <small>{{project}}</small>
+                  <p>{{project}}</p>
               {{/isPBI}}
+              {{#isBug}}
+                  <p>{{project}}</p>
+              {{/isBug}}
               {{#isTask}}
                   <small>Parent:</small><br/>
                   <h4>{{parent}}</h4>
