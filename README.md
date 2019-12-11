@@ -40,7 +40,7 @@ $ npm install -g pdf-card-generator
 $ cardGen COMMAND
 running command...
 $ cardGen (-v|--version|version)
-pdf-card-generator/2.0.2 darwin-x64 node-v12.7.0
+pdf-card-generator/2.1.0 darwin-x64 node-v12.7.0
 $ cardGen --help [COMMAND]
 USAGE
   $ cardGen COMMAND
@@ -69,7 +69,7 @@ ALIASES
   $ cardGen gen
 ```
 
-_See code: [src/commands/generate.ts](https://github.com/Gunmer/pdf-card-generator/blob/v2.0.2/src/commands/generate.ts)_
+_See code: [src/commands/generate.ts](https://github.com/Gunmer/pdf-card-generator/blob/v2.1.0/src/commands/generate.ts)_
 
 ## `cardGen help [COMMAND]`
 
@@ -104,5 +104,5 @@ ALIASES
   $ cardGen init
 ```
 
-_See code: [src/commands/initialize.ts](https://github.com/Gunmer/pdf-card-generator/blob/v2.0.2/src/commands/initialize.ts)_
+_See code: [src/commands/initialize.ts](https://github.com/Gunmer/pdf-card-generator/blob/v2.1.0/src/commands/initialize.ts)_
 <!-- commandsstop -->
