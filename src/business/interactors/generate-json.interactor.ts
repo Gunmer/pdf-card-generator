@@ -26,7 +26,7 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
       throw new CardGeneratorError(1, 'Mandatory columns [id, workItemType, parent] not found')
     }
 
-    let release = csvData.filter(this.filterRelease).map(this.completeRelease)
+    let releases = csvData.filter(this.filterRelease).map(this.completeRelease)
     const PBIs = csvData.filter(this.filterPBIs).map(this.completePBI)
     const tasks = csvData.filter(this.filterTasks).map(this.completeTask)
     const bugs = csvData.filter(this.filterBugs).map(this.completeBug)
@@ -35,8 +35,8 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
     rows.push(...PBIs)
     rows.push(...bugs)
 
-    release = release.map((release: any) => {
-      release.child = rows
+    releases = releases.map((release: any) => {
+      release.childs = rows
         .filter((r: any) => r.parent === release.id)
         .map((r: any) => {
           r.parentId = release.id
@@ -44,6 +44,9 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
 
           return r
         })
+      release.workItemsNumber = release.childs.length
+
+      return release
     })
 
     rows = rows.map((data: any) => {
@@ -60,12 +63,21 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
       return data
     })
 
-    rows.push(...release)
+    rows.push(...releases)
     rows.push(...tasks)
 
     const jsonFile = path.join(param.config.tempFolder, path.parse(param.csvFile).name + '.json')
 
-    return this.jsonService.writeFile(jsonFile, {rows})
+    return this.jsonService.writeFile(jsonFile, {
+      rows,
+      count: {
+        total: rows.length,
+        releases: releases.length,
+        PBIs: PBIs.length,
+        bugs: bugs.length,
+        tasks: tasks.length
+      }
+    })
   }
 
   private hasMandatoryFields(data: any): boolean {
