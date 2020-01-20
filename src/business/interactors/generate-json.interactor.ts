@@ -20,11 +20,22 @@ export class GenerateJsonInteractor implements Interactor<GenerateJsonParam, str
   }
 
   async execute(param: GenerateJsonParam): Promise<string> {
-    const csvData = await this.cvsService.readFromFile(param.csvFile)
+    let csvData = await this.cvsService.readFromFile(param.csvFile)
 
     if (!csvData.every(d => this.hasMandatoryFields(d))) {
       throw new CardGeneratorError(1, 'Mandatory columns [id, workItemType, parent] not found')
     }
+
+    csvData = csvData.map((data: any) => {
+      if (data.assignedTo) {
+        data.assignedTo = {
+          email: data.assignedTo.match(/<([^)]+)>/)[1],
+          name: data.assignedTo.replace(/<([^)]+)>/, '')
+        }
+      }
+
+      return data
+    })
 
     let releases = csvData.filter(this.filterRelease).map(this.completeRelease)
     const PBIs = csvData.filter(this.filterPBIs).map(this.completePBI)
